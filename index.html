@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קופי פייסט — מרכז העתקות ודפוס בחיפה | Copy Paste Haifa</title>
+<meta name="description" content="מרכז העתקות ודפוס בחיפה: הדפסת מסמכים, צילום בצבע ובשחור-לבן, פורמט רחב, כריכה, כרטיסי ביקור ועוד. מהיר, מדויק ונוח — הנחה לסטודנטים ולמורים.">
+<link rel="canonical" href="https://mevkon.github.io/copypaste/">
+<!-- превью ссылки в WhatsApp / Facebook / Instagram -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Copy Paste Haifa">
+<meta property="og:url" content="https://mevkon.github.io/copypaste/">
+<meta property="og:title" content="קופי פייסט — מרכז העתקות ודפוס בחיפה">
+<meta property="og:description" content="הדפסת מסמכים, צילום בצבע ובשחור-לבן, פורמט רחב, כריכה, כרטיסי ביקור ועוד. מהיר, מדויק ונוח — הנחה לסטודנטים ולמורים.">
+<meta property="og:image" content="https://mevkon.github.io/copypaste/img/og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Copy Paste Haifa">
+<meta property="og:locale" content="he_IL">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="קופי פייסט — מרכז העתקות ודפוס בחיפה">
+<meta name="twitter:description" content="הדפסת מסמכים, צילום, פורמט רחב, כריכה, כרטיסי ביקור ועוד. מהיר, מדויק ונוח.">
+<meta name="twitter:image" content="https://mevkon.github.io/copypaste/img/og.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta name="theme-color" content="#F7F5F0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============ DESIGN TOKENS ============ */
+:root{
+  /* brand — CMYK (print industry palette) */
+  --c:#00AEEF; --m:#EC008C; --y:#FFFF01; --k:#141313;
+  --y-text:#707000;
+  /* semantic — paper theme */
+  --bg:#F7F5F0; --bg-2:#FFFFFF; --ink:#161514; --ink-soft:#54514C;
+  --line:rgba(22,21,20,.1); --card:#FFFFFF; --card-line:rgba(22,21,20,.08);
+  --shadow:0 20px 60px -20px rgba(22,21,20,.18);
+  --glass:rgba(247,245,240,.72);
+  --wa:#1DA851; --wa-strong:#128C43;
+  --err:#C81E1E;
+  --r-lg:24px; --r-md:16px; --r-sm:10px; --r-pill:999px;
+  --fs-display:clamp(2.4rem,6.5vw,5rem);
+  --fs-h2:clamp(1.7rem,3.8vw,2.7rem);
+  /* motion (slightly relaxed: enter 650ms, micro 300ms, exit ~65%) */
+  --dur-enter:.65s; --dur-micro:.3s; --dur-exit:.42s;
+  --ease:cubic-bezier(.22,.9,.3,1);
+  --ease-back:cubic-bezier(.34,1.56,.64,1);
+  /* z-scale */
+  --nav-h:107px;
+  --z-content:1; --z-float:80; --z-grain:90; --z-nav:100; --z-menu:105; --z-progress:120; --z-cursor:150; --z-loader:200;
+}
+html[data-theme="dark"]{
+  --bg:#111013; --bg-2:#18171b; --ink:#F2EFE9; --ink-soft:#A8A49D;
+  --line:rgba(242,239,233,.12); --card:#1c1b20; --card-line:rgba(242,239,233,.09);
+  --shadow:0 20px 60px -20px rgba(0,0,0,.55);
+  --glass:rgba(17,16,19,.72);
+  --y-text:#FFFF01;
+  --wa:#25D366; --wa-strong:#1DA851;
+  --err:#F87171;
+}
+/* ============ BASE ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px;overflow-x:clip}
+body{
+  font-family:'Rubik',system-ui,sans-serif;
+  font-size:1rem;line-height:1.6;
+  background:var(--bg); color:var(--ink);
+  overflow-x:hidden;
+  transition:background .5s,color .5s;
+}
+img,svg,iframe{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+a,button,summary,input,select{touch-action:manipulation}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--y);color:#141313}
+h1,h2,h3{line-height:1.12;font-weight:800;letter-spacing:-.01em}
+.container{width:min(1200px,92%);margin-inline:auto}
+section{position:relative;padding-block:clamp(2.8rem,5vw,4.5rem)}
+:focus-visible{outline:3px solid var(--m);outline-offset:2px;border-radius:4px}
+.skip-link{
+  position:fixed;top:-100px;inset-inline-start:1rem;z-index:calc(var(--z-loader) + 1);
+  background:var(--ink);color:var(--bg);padding:.7rem 1.2rem;border-radius:var(--r-sm);
+  font-weight:600;transition:top var(--dur-micro);
+}
+.skip-link:focus-visible{top:1rem}
+
+/* ============ PAPER GRAIN OVERLAY ============ */
+#grain{
+  position:fixed;inset:0;z-index:var(--z-grain);pointer-events:none;
+  background:url("img/paper.jpg");background-size:520px;
+  mix-blend-mode:multiply;opacity:.07;
+}
+html[data-theme="dark"] #grain{mix-blend-mode:screen;opacity:.05}
+
+/* ============ PRELOADER ============ */
+#loader{
+  position:fixed;inset:0;z-index:var(--z-loader);background:var(--bg);
+  display:grid;place-items:center;
+  transition:opacity .5s var(--ease),visibility .5s;
+}
+#loader.done{opacity:0;visibility:hidden}
+.loader-inner{display:grid;justify-items:center;gap:1.2rem}
+.loader-word{font-weight:900;font-size:1.6rem;letter-spacing:.02em}
+.loader-dots{display:flex;gap:.6rem}
+.loader-dots span{width:14px;height:14px;border-radius:50%;animation:ldot 1s infinite var(--ease)}
+.loader-dots span:nth-child(1){background:var(--c)}
+.loader-dots span:nth-child(2){background:var(--m);animation-delay:.12s}
+.loader-dots span:nth-child(3){background:var(--y);animation-delay:.24s}
+.loader-dots span:nth-child(4){background:var(--ink);animation-delay:.36s}
+@keyframes ldot{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.loader-bar{width:180px;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+.loader-bar i{
+  display:block;height:100%;width:0%;
+  background:linear-gradient(90deg,var(--c),var(--m),var(--y));
+  animation:lbar 2s var(--ease) forwards;
+}
+@keyframes lbar{to{width:100%}}
+
+/* ============ SCROLL PROGRESS ============ */
+#progress{
+  position:fixed;top:0;inset-inline-start:0;height:4px;width:0%;z-index:var(--z-progress);
+  background:linear-gradient(90deg,var(--c),var(--m),var(--y));
+}
+
+/* ============ CUSTOM CURSOR ============ */
+#cursor-dot,#cursor-ring{
+  position:fixed;top:0;left:0;pointer-events:none;z-index:var(--z-cursor);border-radius:50%;
+  translate:-50% -50%; display:none;
+}
+#cursor-dot{width:8px;height:8px;background:var(--m)}
+#cursor-ring{
+  width:38px;height:38px;border:1.5px solid var(--ink);opacity:.5;
+  transition:width var(--dur-micro),height var(--dur-micro),opacity var(--dur-micro);
+}
+body.cursor-on #cursor-dot,body.cursor-on #cursor-ring{display:block}
+body.cursor-grow #cursor-ring{width:64px;height:64px;opacity:.9;border-color:var(--m)}
+@media (pointer:coarse){#cursor-dot,#cursor-ring{display:none!important}}
+
+/* ============ NAV ============ */
+#nav{
+  position:fixed;top:0;inset-inline:0;z-index:var(--z-nav);
+  transition:background .4s,box-shadow .4s,backdrop-filter .4s;
+}
+#nav.scrolled{
+  background:var(--glass);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 var(--line);
+}
+.nav-inner{
+  width:min(1200px,92%);margin-inline:auto;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding-block:.7rem;
+}
+.logo{display:flex;align-items:center;gap:.55rem;font-weight:900;font-size:1.25rem;z-index:2;min-height:44px}
+.logo-mark{position:relative;width:85px;height:85px;flex:none}
+.logo-mark img{width:100%;height:100%;display:block;transition:transform var(--dur-micro) var(--ease)}
+.logo:hover .logo-mark img{transform:rotate(-8deg) scale(1.06)}
+.nav-links{display:flex;gap:1.4rem;list-style:none}
+.nav-links a{
+  font-size:.95rem;font-weight:500;color:var(--ink-soft);position:relative;
+  display:inline-flex;align-items:center;min-height:44px;
+  transition:color var(--dur-micro);
+}
+.nav-links a::after{
+  content:"";position:absolute;bottom:.25rem;inset-inline-start:0;width:100%;height:2px;
+  background:linear-gradient(90deg,var(--c),var(--m));
+  transform:scaleX(0);transform-origin:center;transition:transform var(--dur-micro) var(--ease);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-actions{display:flex;align-items:center;gap:.5rem;z-index:2}
+.icon-btn{
+  min-width:44px;min-height:44px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line);font-weight:700;font-size:.8rem;
+  transition:background var(--dur-micro),transform var(--dur-micro);
+}
+.icon-btn:hover{background:var(--line);transform:translateY(-2px)}
+#theme-toggle .ic-sun{display:none}
+html[data-theme="dark"] #theme-toggle .ic-sun{display:block}
+html[data-theme="dark"] #theme-toggle .ic-moon{display:none}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:.5rem;min-height:44px;
+  background:var(--y);color:#141313;font-weight:700;font-size:.9rem;
+  padding:.5rem 1.15rem;border-radius:var(--r-pill);
+  transition:transform var(--dur-micro),box-shadow var(--dur-micro);
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+#burger{display:none;flex-direction:column;gap:5px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
+#burger span{width:20px;height:2px;background:var(--ink);transition:.3s var(--ease)}
+#mobile-menu{
+  position:fixed;inset:0;z-index:var(--z-menu);background:var(--bg);
+  display:grid;place-items:center;
+  clip-path:circle(0 at calc(100% - 3rem) 2rem);
+  transition:clip-path var(--dur-exit) var(--ease);visibility:hidden;
+}
+html[dir="rtl"] #mobile-menu{clip-path:circle(0 at 3rem 2rem)}
+#mobile-menu.open{clip-path:circle(150% at 50% 50%)!important;visibility:visible;transition-duration:var(--dur-enter)}
+#mobile-menu ul{list-style:none;text-align:center;display:grid;gap:1.4rem}
+#mobile-menu a{font-size:1.7rem;font-weight:800;display:inline-block;padding:.3rem .8rem}
+body.menu-open #burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open #burger span:nth-child(2){opacity:0}
+body.menu-open #burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ============ BUTTONS ============ */
+.btn{
+  position:relative;overflow:hidden;
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+  min-height:48px;padding:.85rem 1.8rem;border-radius:var(--r-pill);
+  font-weight:700;font-size:1rem;
+  transition:transform .45s var(--ease-back),box-shadow var(--dur-micro),background var(--dur-micro);
+  will-change:transform;
+}
+/* ink-drop ripple on press */
+.btn .ink{
+  position:absolute;border-radius:50%;pointer-events:none;
+  background:currentColor;opacity:.25;transform:scale(0);
+  animation:ink .6s var(--ease) forwards;
+}
+@keyframes ink{to{transform:scale(2.6);opacity:0}}
+.btn:hover{box-shadow:var(--shadow)}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--wa);color:#fff}
+.btn-primary:hover{background:var(--wa-strong)}
+.btn-secondary{border:1.5px solid var(--ink);background:transparent}
+.btn-secondary:hover{background:var(--ink);color:var(--bg)}
+
+/* ============ HERO ============ */
+#hero{min-height:auto;display:grid;align-items:center;padding-top:calc(var(--nav-h) + 2.5rem);padding-bottom:4rem;overflow:hidden}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  /* dissolve the blobs into the paper before the section edge cuts them */
+  -webkit-mask-image:linear-gradient(180deg,#000 72%,transparent 98%);
+  mask-image:linear-gradient(180deg,#000 72%,transparent 98%);
+}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;mix-blend-mode:multiply;animation:float 14s infinite ease-in-out alternate}
+html[data-theme="dark"] .blob{mix-blend-mode:screen;opacity:.32}
+.blob-c{width:44vw;height:44vw;background:var(--c);top:-12%;inset-inline-end:-8%}
+.blob-m{width:36vw;height:36vw;background:var(--m);bottom:-14%;inset-inline-start:-10%;animation-delay:-5s}
+.blob-y{width:26vw;height:26vw;background:var(--y);top:38%;inset-inline-start:32%;animation-delay:-9s}
+@keyframes float{from{transform:translate(0,0) scale(1)}to{transform:translate(4vw,-5vh) scale(1.12)}}
+.halftone{
+  position:absolute;inset:0;
+  background-image:radial-gradient(var(--ink) 1px,transparent 1.4px);
+  background-size:22px 22px;opacity:.05;
+  -webkit-mask-image:radial-gradient(65% 60% at 70% 30%,#000,transparent);
+  mask-image:radial-gradient(65% 60% at 70% 30%,#000,transparent);
+}
+.hero-wrap{position:relative;display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center}
+.hero-inner{position:relative;display:grid;gap:1.3rem;max-width:780px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.55rem;width:fit-content;
+  border:1px solid var(--line);background:var(--card);
+  padding:.45rem 1rem;border-radius:var(--r-pill);
+  font-size:.85rem;font-weight:600;color:var(--ink-soft);
+}
+.hero-badge b{display:flex;gap:4px}
+.hero-badge b i{width:8px;height:8px;border-radius:50%}
+.hero-badge b i:nth-child(1){background:var(--c)}
+.hero-badge b i:nth-child(2){background:var(--m)}
+.hero-badge b i:nth-child(3){background:var(--y)}
+.hero-title{font-size:var(--fs-display);font-weight:900;letter-spacing:-.02em}
+.hero-title .line{display:block}
+/* char-by-char reveal (Complex tier: rotateX, 15ms stagger) */
+.hero-title .ch{
+  display:inline-block;opacity:0;
+  transform:translateY(26px) rotateX(-45deg);
+  animation:chIn .75s var(--ease) forwards;
+  animation-delay:calc(var(--ci) * 22ms + var(--ld,0ms));
+}
+@keyframes chIn{to{opacity:1;transform:none}}
+.misprint{
+  color:var(--bg);
+  -webkit-text-stroke:2px var(--ink);
+  animation:align 2.6s var(--ease) .4s both;
+}
+@keyframes align{
+  0%{text-shadow:8px 0 var(--c),-8px 4px var(--m),3px -7px var(--y)}
+  60%{text-shadow:3px 0 var(--c),-3px 2px var(--m),1px -3px var(--y)}
+  100%{text-shadow:1.5px 0 var(--c),-1.5px 1px var(--m),.5px -1.5px var(--y)}
+}
+.hero-sub{font-size:clamp(1rem,1.6vw,1.25rem);color:var(--ink-soft);max-width:620px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:.4rem}
+.hero-stats{
+  display:flex;flex-wrap:wrap;gap:2rem;margin-top:1.3rem;
+  padding-top:1.3rem;border-top:1px solid var(--line);
+}
+.stat{display:grid;justify-items:start;gap:.1rem}
+.stat b{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:900;display:block;font-variant-numeric:tabular-nums}
+.stat b em{font-style:normal}
+.stat:nth-child(1) b em{color:var(--c)}
+.stat:nth-child(2) b em{color:var(--m)}
+/* yellow = highlighter chip: bright AND readable (ink on yellow ≈ 12:1) */
+.stat:nth-child(3) b{
+  background:var(--y);color:#141313;
+  padding:.02em .3em;border-radius:.3em;
+  width:fit-content;transform:rotate(-2deg);
+}
+.stat:nth-child(3) b em{color:#141313}
+.stat span{font-size:.9rem;color:var(--ink-soft)}
+/* hero photo collage — polaroid cards.
+   Outer .pcard = JS mouse-parallax layer (inline transform only);
+   inner .pcard-inner = CSS entrance + idle float. Split layers so the
+   fill-mode of the entrance animation can't lock out the parallax. */
+.hero-collage{position:relative;width:540px;height:410px;flex:none}
+.pcard{
+  position:absolute;will-change:transform;
+  transition:transform .45s var(--ease-back);
+}
+.pcard-inner{
+  width:100%;height:100%;position:relative;
+  background:var(--card);padding:10px 10px 14px;
+  border-radius:12px;box-shadow:var(--shadow);border:1px solid var(--card-line);
+  opacity:0;
+  animation:
+    pIn .95s var(--ease) both,
+    pFloat var(--fdur,7s) ease-in-out infinite alternate;
+  animation-delay:var(--d1,.5s), calc(var(--d1,.5s) + .95s);
+}
+@keyframes pIn{from{opacity:0;transform:translateY(40px) rotate(0deg) scale(.9)}to{opacity:1;transform:translateY(0) rotate(var(--rot)) scale(1)}}
+/* papers "breathing" on the desk — barely-there drift, different tempo per card */
+@keyframes pFloat{from{opacity:1;transform:translateY(0) rotate(var(--rot))}to{opacity:1;transform:translateY(-9px) rotate(calc(var(--rot) + 1.6deg))}}
+.pcard-inner img{width:100%;height:100%;object-fit:cover;border-radius:7px}
+.pcard-inner::after{
+  content:"";position:absolute;top:-7px;inset-inline-start:50%;margin-inline-start:-7px;
+  width:14px;height:14px;border-radius:50%;
+}
+/* two big cards up top, one big card below — tight overlapping composition */
+.pcard-1{width:300px;height:215px;top:0;inset-inline-start:0;--rot:-5deg;--d1:.5s;--fdur:7s;z-index:3}
+.pcard-1 .pcard-inner::after{background:var(--m)}
+.pcard-2{width:300px;height:215px;top:34px;inset-inline-end:0;--rot:4deg;--d1:.65s;--fdur:8.2s;z-index:2}
+.pcard-2 .pcard-inner::after{background:var(--c)}
+.pcard-3{width:300px;height:215px;bottom:0;inset-inline-start:120px;--rot:-2deg;--d1:.8s;--fdur:9.4s;z-index:4}
+.pcard-3 .pcard-inner::after{background:var(--y)}
+.scroll-hint{
+  position:absolute;bottom:1.6rem;inset-inline-start:50%;translate:-50% 0;
+  display:grid;justify-items:center;gap:.4rem;font-size:.75rem;color:var(--ink-soft);
+  animation:hint 2s infinite ease-in-out;
+}
+html[dir="rtl"] .scroll-hint{translate:50% 0}
+@keyframes hint{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(8px);opacity:1}}
+
+/* ============ SERVICES MARQUEE ============ */
+.marquee{
+  background:var(--ink);color:var(--bg);
+  padding-block:.65rem;overflow:hidden;transform:rotate(-1.2deg) scale(1.02);
+  border-block:3px solid var(--y);
+}
+.marquee-track{display:flex;width:max-content;animation:scrollx 38s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee span{
+  display:inline-flex;align-items:center;gap:1.2rem;
+  padding-inline:1.1rem;font-weight:700;font-size:.95rem;white-space:nowrap;
+}
+.marquee i{width:9px;height:9px;border-radius:50%;flex:none}
+.marquee span:nth-of-type(4n+1) i{background:var(--c)}
+.marquee span:nth-of-type(4n+2) i{background:var(--m)}
+.marquee span:nth-of-type(4n+3) i{background:var(--y)}
+.marquee span:nth-of-type(4n+4) i{background:var(--bg)}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+html[dir="rtl"] .marquee-track{animation-name:scrollx-rtl}
+@keyframes scrollx-rtl{to{transform:translateX(50%)}}
+
+/* ============ SECTION HEAD ============ */
+.sec-head{display:grid;gap:.6rem;margin-bottom:clamp(1.5rem,3vw,2.4rem)}
+.sec-label{
+  display:inline-flex;align-items:center;gap:.5rem;width:fit-content;
+  font-size:.8rem;font-weight:700;letter-spacing:.08em;color:var(--ink-soft);
+  text-transform:uppercase;
+}
+.sec-label::before{content:"";width:26px;height:3px;background:linear-gradient(90deg,var(--c),var(--m),var(--y));border-radius:2px}
+.sec-title{font-size:var(--fs-h2);font-weight:900}
+/* CMYK misregistration flash on section titles when revealed */
+.reveal.in .mis-t{animation:alignSoft 1.9s var(--ease) both}
+@keyframes alignSoft{
+  0%{text-shadow:5px 0 var(--c),-5px 3px var(--m),2px -4px var(--y)}
+  100%{text-shadow:0 0 transparent,0 0 transparent,0 0 transparent}
+}
+.sec-sub{color:var(--ink-soft);max-width:560px;font-size:.98rem}
+
+/* ============ IMAGE REVEAL (press-output wipe) ============ */
+.img-reveal{overflow:hidden;position:relative}
+.img-reveal img{transform:scale(1.12);transition:transform .9s var(--ease)}
+.img-reveal::before{
+  content:"";position:absolute;inset:0;background:var(--ink);z-index:2;
+  transform:scaleX(1);transform-origin:var(--wipe-origin,left);
+  transition:transform .7s var(--ease);
+}
+html[dir="rtl"] .img-reveal::before{--wipe-origin:right}
+.reveal.in .img-reveal::before,.img-reveal.in::before{transform:scaleX(0);transform-origin:var(--wipe-end,right)}
+html[dir="rtl"] .reveal.in .img-reveal::before,html[dir="rtl"] .img-reveal.in::before{--wipe-end:left}
+.reveal.in .img-reveal img,.img-reveal.in img{transform:scale(1)}
+
+/* ============ SERVICES — BENTO ============ */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
+.card{
+  position:relative;background:var(--card);border:1px solid var(--card-line);
+  border-radius:var(--r-md);padding:1.3rem 1.25rem;
+  transition:transform var(--dur-micro) var(--ease),box-shadow var(--dur-micro),border-color var(--dur-micro);
+  transform-style:preserve-3d;overflow:hidden;
+  grid-column:span 2;
+  display:grid;gap:.4rem;align-content:start;
+}
+/* bento cards pop in with a slight tilt */
+.card.reveal{transform:translateY(20px) scale(.96) rotate(.5deg)}
+.card.reveal.in{transform:none}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+.card::before{
+  content:"";position:absolute;inset-inline-start:0;top:0;width:100%;height:4px;
+  background:var(--accent,var(--c));opacity:0;transition:opacity var(--dur-micro);z-index:3;
+}
+.card:hover::before{opacity:1}
+.card-icon{
+  width:42px;height:42px;border-radius:var(--r-sm);display:grid;place-items:center;
+  background:color-mix(in srgb,var(--accent,var(--c)) 14%,transparent);
+  color:var(--accent,var(--c));margin-bottom:.4rem;
+  transition:transform var(--dur-micro) var(--ease);
+}
+.card:hover .card-icon{transform:rotate(-6deg) scale(1.08)}
+.card h3{font-size:1.05rem}
+.card p{font-size:.9rem;color:var(--ink-soft);line-height:1.5}
+/* plain cards = airy one-line chips: icon + title */
+.card:not(.featured){flex-direction:row;display:flex;align-items:center;gap:.8rem;padding:1rem 1.2rem}
+.card:not(.featured) .card-icon{margin-bottom:0;flex:none}
+.card:not(.featured) h3{font-size:1rem}
+.card-num{
+  position:absolute;top:1.2rem;inset-inline-end:1.3rem;
+  font-size:.78rem;font-weight:800;color:var(--ink);opacity:.18;letter-spacing:.05em;z-index:3;
+}
+.card.span3{grid-column:span 3}
+.card.span4{grid-column:span 4}
+.card.featured{
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--card)),var(--card) 70%);
+  padding:1.3rem 1.2rem;
+}
+.card.featured h3{font-size:1.2rem}
+.card.featured p{font-size:.92rem;max-width:46ch}
+.card.featured .card-icon{width:48px;height:48px}
+.card.featured .bg-ic{
+  position:absolute;inset-inline-end:-1.2rem;bottom:-1.6rem;opacity:.07;pointer-events:none;
+  transition:transform .45s var(--ease-back);
+}
+.card.featured:hover .bg-ic{transform:rotate(-10deg) scale(1.12)}
+.card-photo{
+  border-radius:calc(var(--r-md) - 4px);height:150px;margin-bottom:.85rem;
+}
+.card-photo img{width:100%;height:100%;object-fit:cover}
+.card:hover .card-photo img{transform:scale(1.06)}
+.bento-cta{
+  grid-column:1/-1;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+  background:var(--ink);color:var(--bg);border-radius:var(--r-md);
+  padding:1rem 1.4rem;
+}
+@media (max-width:920px){.bento-cta{grid-column:1/-1}}
+.bento-cta h3{font-size:1.3rem;margin-bottom:.2rem}
+.bento-cta p{color:color-mix(in srgb,var(--bg) 70%,transparent);font-size:.95rem}
+
+/* ============ GALLERY — dual photo marquee + watermark ============ */
+#gallery{overflow:hidden;background:var(--bg-2);transition:background .5s}
+.watermark{
+  position:absolute;top:50%;inset-inline-start:0;translate:0 -50%;
+  font-size:clamp(6rem,15vw,12rem);font-weight:900;line-height:1;
+  color:transparent;-webkit-text-stroke:2px var(--line);
+  white-space:nowrap;pointer-events:none;user-select:none;
+  will-change:transform;
+}
+.g-rows{display:grid;gap:.7rem;position:relative;direction:ltr}
+html[dir="rtl"] .g-item figcaption{direction:rtl}
+.g-row{display:flex;width:max-content;will-change:transform}
+.g-item{margin-right:1rem} /* margin, not flex gap — keeps the wrap seam exact */
+.g-item{
+  width:230px;height:155px;flex:none;border-radius:var(--r-md);overflow:hidden;
+  position:relative;border:1px solid var(--card-line);
+}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(.95) contrast(1.05);
+  transition:filter .45s var(--ease),transform .45s var(--ease);
+}
+.g-item::after{
+  content:"";position:absolute;inset:0;mix-blend-mode:color;opacity:.75;
+  background:var(--tint,var(--c));transition:opacity .45s;pointer-events:none;
+}
+.g-item:hover img{filter:none;transform:scale(1.05)}
+.g-item:hover::after{opacity:0}
+.g-item:nth-child(3n+1)::after{--tint:var(--c)}
+.g-item:nth-child(3n+2)::after{--tint:var(--m)}
+.g-item:nth-child(3n+3)::after{--tint:var(--y)}
+.g-item figcaption{
+  position:absolute;bottom:.6rem;inset-inline-start:.6rem;z-index:2;
+  background:var(--glass);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  color:var(--ink);font-size:.78rem;font-weight:600;
+  padding:.25rem .7rem;border-radius:var(--r-pill);
+}
+
+/* ============ ABOUT ============ */
+#about .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3.5vw,3rem);align-items:center}
+.about-visual{position:relative;aspect-ratio:4/3.9;max-width:480px;width:100%;justify-self:center}
+.sheet{position:absolute;inset:8% 6%;border-radius:var(--r-md);border:1px solid var(--card-line)}
+/* --p (0..1) is set from scroll progress — sheets fan out as you scroll */
+.sheet-c{background:var(--c);transform:rotate(calc(-7deg - var(--p,0)*5deg));opacity:.85}
+.sheet-m{background:var(--m);transform:rotate(calc(-2.5deg - var(--p,0)*2deg));opacity:.85}
+.sheet-y{background:var(--y);transform:rotate(calc(2deg + var(--p,0)*3deg));opacity:.9}
+.sheet-main{
+  background:var(--card);transform:rotate(6deg);
+  box-shadow:var(--shadow);padding:12px;
+  transition:transform var(--dur-enter) var(--ease);
+  display:grid;
+}
+.about-visual:hover .sheet-main{transform:rotate(0deg) scale(1.02)}
+.sheet-main .img-reveal{border-radius:calc(var(--r-md) - 4px);height:100%}
+.sheet-main img{width:100%;height:100%;object-fit:cover}
+.about-badge{
+  position:absolute;bottom:2%;inset-inline-end:-2%;z-index:4;
+  background:var(--ink);color:var(--bg);border-radius:var(--r-md);
+  padding:1rem 1.4rem;text-align:center;box-shadow:var(--shadow);
+  transform:rotate(3deg);
+}
+.about-badge b{
+  display:block;font-size:clamp(1.35rem,3.2vw,1.75rem);font-weight:900;line-height:1.1;white-space:nowrap;
+  background:linear-gradient(120deg,var(--c),var(--m) 55%,var(--y));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.about-badge span{font-size:.82rem;font-weight:600}
+.about-text{display:grid;gap:1rem}
+.about-text p{color:var(--ink-soft);font-size:1.02rem;max-width:65ch}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-top:.5rem}
+.feature{
+  display:flex;gap:.7rem;align-items:center;
+  background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-sm);
+  padding:.85rem 1rem;transition:transform var(--dur-micro) var(--ease),box-shadow var(--dur-micro);
+}
+.feature:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.feature .dot{width:12px;height:12px;border-radius:50%;flex:none}
+.feature:nth-child(1) .dot{background:var(--c)}
+.feature:nth-child(2) .dot{background:var(--m)}
+.feature:nth-child(3) .dot{background:var(--y)}
+.feature:nth-child(4) .dot{background:var(--ink)}
+.feature b{display:block;font-size:.95rem}
+
+/* ============ PROCESS ============ */
+#process{background:var(--bg-2);transition:background .5s}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;position:relative}
+.steps::before{
+  content:"";position:absolute;top:27px;inset-inline:8%;height:2px;
+  background-image:linear-gradient(90deg,var(--ink-soft) 40%,transparent 40%);
+  background-size:14px 2px;opacity:0;transition:opacity .8s .4s;
+}
+.steps.in::before{opacity:.35;animation:dash 20s linear infinite}
+@keyframes dash{to{background-position:280px 0}}
+.step{display:grid;justify-items:center;text-align:center;gap:.8rem;padding-inline:.6rem}
+.step-num{
+  width:54px;height:54px;border-radius:50%;display:grid;place-items:center;
+  font-weight:900;font-size:1.15rem;background:var(--card);
+  border:2px solid var(--ink);position:relative;z-index:var(--z-content);
+  transition:transform var(--dur-micro) var(--ease),background var(--dur-micro),color var(--dur-micro);
+}
+.step:hover .step-num{transform:scale(1.12) rotate(-8deg);background:var(--ink);color:var(--bg)}
+.step:nth-child(1) .step-num{box-shadow:5px 5px 0 var(--c)}
+.step:nth-child(2) .step-num{box-shadow:5px 5px 0 var(--m)}
+.step:nth-child(3) .step-num{box-shadow:5px 5px 0 var(--y)}
+.step:nth-child(4) .step-num{box-shadow:5px 5px 0 var(--ink-soft)}
+.step h3{font-size:1.1rem}
+.step p{font-size:.88rem;color:var(--ink-soft)}
+
+/* ============ TESTIMONIALS ============ */
+#testimonials{overflow:hidden}
+.t-marquee{
+  position:relative;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+}
+/* no flex gap: each card carries its own trailing margin so the two
+   identical halves (and the -50% loop seam) line up exactly */
+.t-track{display:flex;width:max-content;animation:scrollx 55s linear infinite;padding-block:.4rem}
+.t-marquee:hover .t-track,.t-marquee:focus-within .t-track{animation-play-state:paused}
+html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
+.quote{
+  width:min(300px,80vw);flex:none;margin-inline-end:.8rem;
+  background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-md);
+  padding:1.3rem 1.25rem;display:grid;gap:.75rem;align-content:start;
+  transition:transform var(--dur-micro) var(--ease),box-shadow var(--dur-micro);
+}
+.quote:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.quote .qmark{font-size:2.6rem;font-weight:900;line-height:.6;font-family:Georgia,serif}
+.quote[data-tone="c"] .qmark{color:var(--c)}
+.quote[data-tone="m"] .qmark{color:var(--m)}
+.quote[data-tone="y"] .qmark{color:var(--y)}
+/* liveliness: cards sit slightly off-axis, straighten on hover */
+.t-track .quote:nth-child(odd){rotate:.7deg}
+.t-track .quote:nth-child(even){rotate:-.7deg}
+.t-track .quote:hover{rotate:0deg}
+.quote p{color:var(--ink-soft);font-size:.95rem}
+.quote footer{display:flex;align-items:center;gap:.7rem}
+.avatar{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  font-weight:800;color:#fff;font-size:.95rem;flex:none;
+}
+.quote[data-tone="c"] .avatar{background:var(--c)}
+.quote[data-tone="m"] .avatar{background:var(--m)}
+.quote[data-tone="y"] .avatar{background:var(--y);color:#141313}
+.quote footer b{display:block;font-size:.92rem}
+.quote footer span{font-size:.8rem;color:var(--ink-soft)}
+.stars{color:var(--y);letter-spacing:2px;font-size:.85rem;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+
+/* ============ FAQ ============ */
+#faq{background:var(--bg-2);transition:background .5s}
+.faq-list{max-width:680px;margin-inline:auto;display:grid;gap:.65rem}
+.faq-item{
+  background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-md);
+  overflow:hidden;transition:box-shadow var(--dur-micro);
+}
+.faq-item[open]{box-shadow:var(--shadow)}
+.faq-item summary{
+  list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:1rem;
+  padding:.7rem 1.1rem;font-weight:600;font-size:.95rem;min-height:48px;
+}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .plus{
+  width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);
+  display:grid;place-items:center;flex:none;font-weight:500;
+  transition:transform var(--dur-micro) var(--ease),background var(--dur-micro),color var(--dur-micro);
+}
+.faq-item[open] summary .plus{transform:rotate(45deg);background:var(--m);border-color:var(--m);color:#fff}
+.faq-body{padding:0 1.1rem .85rem;color:var(--ink-soft);font-size:.9rem;max-width:70ch}
+.faq-item[open] .faq-body{animation:faqIn .42s var(--ease)}
+@keyframes faqIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+/* ============ CONTACT ============ */
+#contact .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:start}
+.contact-title{font-size:clamp(1.8rem,3.8vw,2.8rem);font-weight:900;line-height:1.08}
+.contact-title em{
+  font-style:normal;
+  background:linear-gradient(120deg,var(--c),var(--m) 55%,var(--y));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.contact-left{display:grid;gap:1.3rem}
+.contact-left>p{color:var(--ink-soft);font-size:1.05rem;max-width:52ch}
+.lead-form{
+  display:grid;gap:.9rem;
+  background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-md);
+  padding:1.5rem;box-shadow:var(--shadow);
+}
+.lead-form h3{font-size:1.2rem}
+.field{display:grid;gap:.35rem}
+.field label{font-weight:600;font-size:.9rem}
+.field label .req{color:var(--err)}
+.field input,.field select{
+  min-height:48px;padding:.6rem .9rem;border-radius:var(--r-sm);
+  border:1.5px solid var(--line);background:var(--bg);color:var(--ink);
+  font:inherit;width:100%;transition:border-color var(--dur-micro);
+}
+.field input:focus-visible,.field select:focus-visible{outline:3px solid var(--m);outline-offset:1px;border-color:transparent}
+/* custom select chevron: native RTL arrow hugs the rounded corner */
+.field select{
+  appearance:none;-webkit-appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>");
+  background-repeat:no-repeat;background-size:16px;
+  background-position:left 1rem center;
+  padding-inline-end:2.6rem;
+}
+html[dir="ltr"] .field select{background-position:right 1rem center}
+.field .err-msg{display:none;color:var(--err);font-size:.82rem;font-weight:500}
+.field.invalid input{border-color:var(--err)}
+.field.invalid .err-msg{display:block}
+.form-note{font-size:.82rem;color:var(--ink-soft);display:flex;gap:.45rem;align-items:center}
+.form-ok{display:none;align-items:center;gap:.5rem;font-weight:600;color:var(--wa-strong);font-size:.92rem}
+.form-ok.show{display:flex}
+.contact-side{display:grid;gap:.6rem}
+.ccard{
+  display:flex;align-items:center;gap:.85rem;min-height:48px;
+  background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-sm);
+  padding:.7rem 1rem;transition:transform var(--dur-micro) var(--ease),box-shadow var(--dur-micro);
+}
+a.ccard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.ccard .ic{width:46px;height:46px;border-radius:var(--r-md);display:grid;place-items:center;flex:none}
+.ccard[data-tone="c"] .ic{background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--c)}
+.ccard[data-tone="m"] .ic{background:color-mix(in srgb,var(--m) 15%,transparent);color:var(--m)}
+.ccard[data-tone="y"] .ic{background:color-mix(in srgb,var(--y) 25%,transparent);color:var(--y-text)}
+.ccard[data-tone="k"] .ic{background:var(--line);color:var(--ink)}
+.ccard b{display:block;font-size:1rem}
+.ccard span{font-size:.85rem;color:var(--ink-soft)}
+.ccard .val{direction:ltr;unicode-bidi:embed}
+.map-wrap{
+  border-radius:var(--r-md);overflow:hidden;border:1px solid var(--card-line);
+  position:relative;background:var(--card);
+}
+/* local OpenStreetMap: 3×3 tiles shipped with the site — renders everywhere, no external requests */
+.osm-map{position:relative;height:180px;overflow:hidden;direction:ltr;background:#eef0ea}
+.osm-tiles{
+  display:grid;grid-template-columns:repeat(3,1fr);position:absolute;
+  /* grid is oversized (≥130% of the viewport) so shifting it to centre the shop
+     never exposes an empty edge; left/top 50% + the negative translate put the
+     shop's tile-math point (41.4%/42.78% of the grid) exactly at the centre */
+  width:max(130%,230px);left:50%;top:50%;transform:translate(-41.4%,-42.78%);
+}
+.osm-tiles img{width:100%;height:auto}
+html[data-theme="dark"] .osm-tiles img{filter:grayscale(.5) invert(.92) hue-rotate(180deg)}
+/* Copy Paste Haifa — International St 5, Haifa (32.7813482N 35.0092643E).
+   Pin sits at 41.40%/42.78% of the z16 3×3 grid; the .osm-tiles transform
+   shifts the grid so that point lands at the center of the 180px viewport. */
+.osm-pin{
+  position:absolute;top:42.78%;left:41.40%;translate:-50% -100%;z-index:2;
+  color:var(--m);filter:drop-shadow(0 3px 4px rgba(0,0,0,.35));
+  animation:pinDrop .6s var(--ease-back) both;
+}
+@keyframes pinDrop{from{translate:-50% -220%;opacity:0}to{translate:-50% -100%;opacity:1}}
+.osm-attr{
+  position:absolute;bottom:4px;right:6px;z-index:2;
+  font-size:.62rem;color:#333;background:rgba(255,255,255,.78);
+  padding:1px 7px;border-radius:8px;
+}
+/* invisible extended hit area: the visual chip stays tiny (legal caption),
+   but the tap target meets the 44px minimum */
+.osm-attr::after{content:"";position:absolute;inset:-14px}
+.map-actions{display:flex;gap:.6rem;padding:.8rem;flex-wrap:wrap}
+.map-btn{
+  display:inline-flex;align-items:center;gap:.45rem;min-height:44px;
+  padding:.5rem 1rem;border-radius:var(--r-pill);border:1.5px solid var(--line);
+  font-weight:600;font-size:.88rem;
+  transition:background var(--dur-micro),transform var(--dur-micro);
+}
+.map-btn:hover{background:var(--line);transform:translateY(-2px)}
+
+/* ============ FOOTER ============ */
+footer.site{
+  border-top:1px solid var(--line);padding-block:1.3rem;
+  display:grid;gap:.4rem;justify-items:center;text-align:center;
+  color:var(--ink-soft);font-size:.88rem;
+}
+footer.site .cmyk-line{display:flex;gap:6px;margin-bottom:.4rem}
+footer.site .cmyk-line i{width:10px;height:10px;border-radius:50%}
+footer.site .cmyk-line i:nth-child(1){background:var(--c)}
+footer.site .cmyk-line i:nth-child(2){background:var(--m)}
+footer.site .cmyk-line i:nth-child(3){background:var(--y)}
+footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
+.ft-social{display:flex;gap:.6rem;margin-bottom:.2rem}
+.ft-social a{
+  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--line);color:var(--ink-soft);
+  transition:transform var(--dur-micro) var(--ease),background var(--dur-micro),color var(--dur-micro);
+}
+.ft-social a:hover{transform:translateY(-2px);background:var(--y);color:#141313;border-color:transparent}
+
+/* ============ FLOATING ============ */
+#wa-float{
+  position:fixed;bottom:1.4rem;inset-inline-start:1.4rem;z-index:var(--z-float);
+  width:58px;height:58px;border-radius:50%;background:var(--wa);color:#fff;
+  display:grid;place-items:center;box-shadow:0 10px 30px -8px rgba(29,168,81,.6);
+  transition:transform var(--dur-micro) var(--ease);
+  animation:pulse 2.6s infinite;
+}
+#wa-float:hover{transform:scale(1.1) rotate(8deg)}
+@keyframes pulse{0%,100%{box-shadow:0 10px 30px -8px rgba(29,168,81,.6),0 0 0 0 rgba(29,168,81,.35)}50%{box-shadow:0 10px 30px -8px rgba(29,168,81,.6),0 0 0 14px rgba(29,168,81,0)}}
+#top-btn{
+  position:fixed;bottom:1.6rem;inset-inline-end:1.4rem;z-index:var(--z-float);
+  width:48px;height:48px;border-radius:50%;
+  background:var(--ink);color:var(--bg);display:grid;place-items:center;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:var(--dur-exit) var(--ease);
+}
+#top-btn.show{opacity:1;visibility:visible;transform:translateY(0)}
+#top-btn:hover{transform:translateY(-4px)}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity var(--dur-enter) var(--ease),transform var(--dur-enter) var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width:1260px){
+  .hero-wrap{grid-template-columns:1fr}
+  .hero-collage{display:none}
+}
+/* nav needs its own, earlier breakpoint: RU labels are long and the bar
+   runs out of slack below ~1020px while the rest of the layout still fits */
+@media (max-width:1020px){
+  .nav-links,.nav-cta{display:none}
+  #burger{display:flex}
+}
+@media (max-width:920px){
+  .bento{grid-template-columns:1fr 1fr}
+  .card,.card.span3,.card.span4{grid-column:span 1}
+  .card.featured{grid-column:span 2}
+  #about .about-grid,#contact .contact-grid{grid-template-columns:1fr}
+  .about-visual{max-width:420px;margin-inline:auto;width:100%}
+  .steps{grid-template-columns:1fr 1fr;gap:2rem 1rem}
+  .steps::before{display:none}
+  .features{grid-template-columns:1fr}
+  .g-item{width:240px;height:170px}
+}
+@media (max-width:520px){
+  .bento{grid-template-columns:1fr}
+  .card.featured{grid-column:span 1}
+  .steps{grid-template-columns:1fr}
+  .hero-stats{gap:1.4rem}
+  .hero-ctas .btn{width:100%}
+}
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .hero-title .ch{opacity:1;transform:none;animation:none}
+  .pcard-inner{opacity:1;animation:none;transform:rotate(var(--rot))}
+  .marquee-track,.t-track{animation:none!important;flex-wrap:wrap;width:auto}
+  .g-row{flex-wrap:wrap;width:auto}
+  .img-reveal::before{display:none}
+  .img-reveal img{transform:none}
+  .watermark{display:none}
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#services" data-i18n="skip">דלגו לתוכן</a>
+
+<div id="grain" aria-hidden="true"></div>
+
+<!-- preloader -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-inner">
+    <div class="loader-dots"><span></span><span></span><span></span><span></span></div>
+    <div class="loader-word" data-i18n="brand">קופי פייסט</div>
+    <div class="loader-bar"><i></i></div>
+  </div>
+</div>
+
+<div id="progress" aria-hidden="true"></div>
+<div id="cursor-dot" aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- nav -->
+<header id="nav">
+  <div class="nav-inner">
+    <a class="logo" href="#hero">
+      <span class="logo-mark"><img src="img/logo.png" data-i18n-alt="brand" alt="קופי פייסט" width="85" height="85" decoding="async"></span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#services" data-i18n="nav_services">שירותים</a></li>
+        <li><a href="#gallery" data-i18n="nav_gallery">גלריה</a></li>
+        <li><a href="#about" data-i18n="nav_about">עלינו</a></li>
+        <li><a href="#process" data-i18n="nav_process">איך זה עובד</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">שאלות</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">צור קשר</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="lang-toggle" aria-label="Switch language">RU</button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Toggle color theme">
+        <svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="ic-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+      <a class="nav-cta" href="tel:+972527569070">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span class="val">052-756-9070</span>
+      </a>
+      <button id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div id="mobile-menu">
+  <ul>
+    <li><a href="#services" data-i18n="nav_services">שירותים</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">גלריה</a></li>
+    <li><a href="#about" data-i18n="nav_about">עלינו</a></li>
+    <li><a href="#process" data-i18n="nav_process">איך זה עובד</a></li>
+    <li><a href="#faq" data-i18n="nav_faq">שאלות</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">צור קשר</a></li>
+    <li><a href="tel:+972527569070" class="val">052-756-9070</a></li>
+  </ul>
+</div>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="blob blob-c"></div>
+    <div class="blob blob-m"></div>
+    <div class="blob blob-y"></div>
+    <div class="halftone"></div>
+  </div>
+  <div class="container hero-wrap">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <b aria-hidden="true"><i></i><i></i><i></i></b>
+        <span data-i18n="hero_badge">בית דפוס · 30+ שנות ניסיון</span>
+      </div>
+      <h1 class="hero-title" id="hero-title">
+        <span class="line" style="--ld:0ms"><span class="w" data-i18n="hero_l1">מדפיסים</span></span>
+        <span class="line misprint" style="--ld:120ms"><span class="w" data-i18n="hero_l2">את הרעיונות</span></span>
+        <span class="line" style="--ld:260ms"><span class="w" data-i18n="hero_l3">שלכם.</span></span>
+      </h1>
+      <p class="hero-sub" data-i18n="hero_sub">ציוד דיגיטלי מתקדם, מחירים תחרותיים והתחייבות לשירות הטוב ביותר. דיוק, איכות ומקצועיות — כבר יותר משלושים שנה.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary magnetic" href="https://wa.me/972527569070" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          <span data-i18n="cta_wa">שלחו וואטסאפ</span>
+        </a>
+        <a class="btn btn-secondary magnetic" href="tel:+972527569070">
+          <span data-i18n="cta_call">התקשרו עכשיו</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b><em class="counter" data-target="1000">0</em>+</b><span data-i18n="stat1">לקוחות מרוצים</span></div>
+        <div class="stat"><b><em class="counter" data-target="10">0</em>+</b><span data-i18n="stat2">שירותי דפוס</span></div>
+        <div class="stat"><b><em class="counter" data-target="92">0</em>%</b><span data-i18n="stat3">ממליצים עלינו</span></div>
+      </div>
+    </div>
+    <div class="hero-collage" id="hero-collage" aria-hidden="true">
+      <div class="pcard pcard-1"><div class="pcard-inner"><img src="img/hero-binding.jpg" alt="" width="300" height="215" decoding="async"></div></div>
+      <div class="pcard pcard-2"><div class="pcard-inner"><img src="img/hero-lamination.jpg" alt="" width="300" height="215" decoding="async"></div></div>
+      <div class="pcard pcard-3"><div class="pcard-inner"><img src="img/hero-print.jpg" alt="" width="300" height="215" decoding="async"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marquee-track"></div>
+</div>
+
+<!-- SERVICES — bento grid -->
+<section id="services">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-label" data-i18n="srv_label">השירותים שלנו</span>
+      <h2 class="sec-title"><span class="mis-t" data-i18n="srv_title">כל פתרונות הדפוס במקום אחד</span></h2>
+    </div>
+    <div class="bento" id="services-grid"></div>
+  </div>
+</section>
+
+<!-- GALLERY — dual photo marquee -->
+<section id="gallery">
+  <div class="watermark" id="watermark" aria-hidden="true" data-i18n="wm">דפוס · דפוס · דפוס</div>
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-label" data-i18n="gl_label">מהעולם שלנו</span>
+      <h2 class="sec-title"><span class="mis-t" data-i18n="gl_title">צבע. נייר. דיו.</span></h2>
+    </div>
+  </div>
+  <div class="g-rows">
+    <div class="g-row" id="g-row-1"></div>
+    <div class="g-row" id="g-row-2"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container about-grid">
+    <div class="about-visual reveal">
+      <div class="sheet sheet-c" aria-hidden="true"></div>
+      <div class="sheet sheet-m" aria-hidden="true"></div>
+      <div class="sheet sheet-y" aria-hidden="true"></div>
+      <div class="sheet sheet-main">
+        <div class="img-reveal">
+          <img src="img/about-design.jpg" data-i18n-alt="alt_about" alt="מעצב גרפי מכין קובץ לדפוס" loading="lazy" decoding="async" width="800" height="740">
+        </div>
+      </div>
+      <div class="about-badge" aria-hidden="true">
+        <b data-i18n="about_card_big">הנחות</b>
+        <span data-i18n="about_card_cap">לסטודנטים ולמורים</span>
+      </div>
+    </div>
+    <div class="about-text">
+      <div class="sec-head" style="margin-bottom:.4rem">
+        <span class="sec-label reveal" data-i18n="about_label">קצת עלינו</span>
+        <h2 class="sec-title reveal"><span class="mis-t" data-i18n="about_title">דיוק. איכות. מקצועיות.</span></h2>
+      </div>
+      <p class="reveal" data-i18n="about_p1">יותר משלושים שנה אנחנו מדפיסים לאלפי לקוחות באזור שלכם — ציוד מתקדם, מחיר מנצח ושירות אישי.</p>
+      <div class="features">
+        <div class="feature reveal" style="--d:.04s"><span class="dot" aria-hidden="true"></span><b data-i18n="f1_t">ציוד מתקדם</b></div>
+        <div class="feature reveal" style="--d:.08s"><span class="dot" aria-hidden="true"></span><b data-i18n="f2_t">צוות מנוסה</b></div>
+        <div class="feature reveal" style="--d:.12s"><span class="dot" aria-hidden="true"></span><b data-i18n="f3_t">מחיר תחרותי</b></div>
+        <div class="feature reveal" style="--d:.16s"><span class="dot" aria-hidden="true"></span><b data-i18n="f4_t">עמידה בזמנים</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-label" data-i18n="pr_label">איך זה עובד</span>
+      <h2 class="sec-title"><span class="mis-t" data-i18n="pr_title">מרעיון להדפסה בארבעה צעדים</span></h2>
+    </div>
+    <div class="steps" id="steps">
+      <div class="step reveal" style="--d:0s"><div class="step-num" aria-hidden="true">1</div><h3 data-i18n="pr1_t">יוצרים קשר</h3></div>
+      <div class="step reveal" style="--d:.04s"><div class="step-num" aria-hidden="true">2</div><h3 data-i18n="pr2_t">עיצוב והגהה</h3></div>
+      <div class="step reveal" style="--d:.08s"><div class="step-num" aria-hidden="true">3</div><h3 data-i18n="pr3_t">הדפסה</h3></div>
+      <div class="step reveal" style="--d:.12s"><div class="step-num" aria-hidden="true">4</div><h3 data-i18n="pr4_t">מוכן!</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-label" data-i18n="ts_label">ממליצים עלינו</span>
+      <h2 class="sec-title"><span class="mis-t" data-i18n="ts_title">אלפי לקוחות כבר יודעים</span></h2>
+    </div>
+  </div>
+  <div class="t-marquee reveal">
+    <div class="t-track" id="t-track"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="sec-head reveal" style="justify-items:center;text-align:center">
+      <span class="sec-label" data-i18n="faq_label">שאלות נפוצות</span>
+      <h2 class="sec-title"><span class="mis-t" data-i18n="faq_title">יש שאלה? יש תשובה</span></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal">
+        <summary><span data-i18n="faq1_q">אילו קבצים מתאימים להדפסה?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq1_a">הכי טוב — קובץ PDF באיכות דפוס (300DPI) עם שוליים. אין לכם קובץ מוכן? אין בעיה, נשמח לעזור להכין אותו.</div>
+      </details>
+      <details class="faq-item reveal" style="--d:.04s">
+        <summary><span data-i18n="faq2_q">תוך כמה זמן ההזמנה מוכנה?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq2_a">רוב העבודות מוכנות תוך ימים ספורים. צריכים משהו דחוף? דברו איתנו — נעשה הכל כדי לעמוד בלוח הזמנים שלכם.</div>
+      </details>
+      <details class="faq-item reveal" style="--d:.08s">
+        <summary><span data-i18n="faq3_q">אתם עוזרים גם בעיצוב?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq3_a">כן! הצוות שלנו מלווה אתכם משלב הרעיון ועד המוצר המודפס — כולל עיצוב, הגהה והכנת הקובץ לדפוס.</div>
+      </details>
+      <details class="faq-item reveal" style="--d:.12s">
+        <summary><span data-i18n="faq4_q">יש כמות מינימום להזמנה?</span><span class="plus" aria-hidden="true">+</span></summary>
+        <div class="faq-body" data-i18n="faq4_a">תלוי במוצר. התקשרו או שלחו וואטסאפ — נתאים לכם הצעת מחיר משתלמת לכל כמות.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="sec-label" data-i18n="ct_label">צור קשר</span>
+      <h2 class="contact-title">
+        <span data-i18n="ct_t1">בואו נדפיס</span><br>
+        <em data-i18n="ct_t2">משהו ביחד</em>
+      </h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-left">
+        <form class="lead-form reveal" id="lead-form" novalidate>
+          <h3 data-i18n="form_title">השאירו פרטים — נחזור אליכם</h3>
+          <div class="field" id="f-name">
+            <label for="in-name"><span data-i18n="form_name">שם</span> <span class="req" aria-hidden="true">*</span></label>
+            <input id="in-name" name="name" type="text" autocomplete="name" required>
+            <span class="err-msg" data-i18n="err_name" role="alert">נא למלא שם</span>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="in-phone"><span data-i18n="form_phone">טלפון</span> <span class="req" aria-hidden="true">*</span></label>
+            <input id="in-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required>
+            <span class="err-msg" data-i18n="err_phone" role="alert">נא למלא מספר טלפון תקין</span>
+          </div>
+          <div class="field">
+            <label for="in-product" data-i18n="form_product">מה להדפיס?</label>
+            <select id="in-product" name="product"></select>
+          </div>
+          <button class="btn btn-primary" type="submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <span data-i18n="form_submit">שלחו בקשה בוואטסאפ</span>
+          </button>
+          <span class="form-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <span data-i18n="form_note">הכפתור יפתח וואטסאפ עם ההודעה מוכנה לשליחה</span>
+          </span>
+          <span class="form-ok" id="form-ok" aria-live="polite">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+            <span data-i18n="form_ok">וואטסאפ נפתח — ההודעה מוכנה לשליחה</span>
+          </span>
+        </form>
+      </div>
+      <div class="contact-side">
+        <a class="ccard reveal" data-tone="c" href="tel:+972527569070">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><b data-i18n="ct_phone">טלפון</b><span class="val" style="display:block">052-756-9070</span><span class="val" style="display:block">04-832-5444</span></div>
+        </a>
+        <a class="ccard reveal" data-tone="m" style="--d:.04s" href="mailto:yfnosh@gmail.com">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+          <div><b data-i18n="ct_email">אימייל</b><span class="val">yfnosh@gmail.com</span></div>
+        </a>
+        <div class="ccard reveal" data-tone="y" style="--d:.08s">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><b data-i18n="ct_hours">שעות פעילות</b><span data-i18n="ct_hours_v">ראשון–חמישי · 9:00–15:00</span></div>
+        </div>
+        <a class="ccard reveal" data-tone="c" style="--d:.10s" href="https://www.google.com/maps/dir/?api=1&destination=32.7813482,35.0092643" target="_blank" rel="noopener">
+          <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><b data-i18n="ct_addr">כתובת</b><span data-i18n="ct_addr_v">רחוב אינטרנשיונל 5, חיפה</span></div>
+        </a>
+        <div class="map-wrap reveal" style="--d:.12s">
+          <div class="osm-map" role="img" aria-label="Map — Copy Paste Haifa, International St 5, Haifa">
+            <div class="osm-tiles" aria-hidden="true">
+              <img src="img/osm/t16-39140-26444.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39141-26444.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39142-26444.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39140-26445.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39141-26445.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39142-26445.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39140-26446.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39141-26446.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39142-26446.png" alt="" width="256" height="256" loading="lazy" decoding="async">
+              <span class="osm-pin" aria-hidden="true">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="#fff" stroke-width="1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" fill="#fff" stroke="none"/></svg>
+              </span>
+            </div>
+            <a class="osm-attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
+          </div>
+          <div class="map-actions">
+            <a class="map-btn" href="https://waze.com/ul?ll=32.7813482,35.0092643&navigate=yes" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span data-i18n="waze">נווטו בוויז</span>
+            </a>
+            <a class="map-btn" href="https://www.google.com/maps/dir/?api=1&destination=32.7813482,35.0092643" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l-6 3V6l6-3 6 3 6-3v15l-6 3-6-3z"/><path d="M9 3v15M15 6v15"/></svg>
+              <span>Google Maps</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="cmyk-line" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="ft-social">
+    <a href="https://www.facebook.com/copypastehaifa/" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.49-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/copypaste_haifa/" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+    </a>
+  </div>
+  <div data-i18n="ft_rights">© 2026 קופי פייסט חיפה — מרכז העתקות ודפוס. כל הזכויות שמורות.</div>
+  <div data-i18n="ft_line">מהיר · מדויק · נוח</div>
+</footer>
+
+<a id="wa-float" href="https://wa.me/972527569070" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+</a>
+<button id="top-btn" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
+
+<script>
+/* ============ I18N ============ */
+const I18N = {
+  he: {
+    _dir:"rtl", _lang:"he", _toggle:"RU",
+    doc_title:"קופי פייסט — מרכז העתקות ודפוס בחיפה | Copy Paste Haifa",
+    brand:"קופי פייסט", skip:"דלגו לתוכן",
+    nav_services:"שירותים", nav_gallery:"גלריה", nav_about:"עלינו", nav_process:"איך זה עובד", nav_faq:"שאלות", nav_contact:"צור קשר",
+    hero_badge:"מרכז העתקות ודפוס · חיפה",
+    hero_l1:"מדפיסים", hero_l2:"את הרעיונות", hero_l3:"שלכם.",
+    hero_sub:"העתקות, הדפסות ופתרונות דפוס — מהיר, מדויק ונוח. בחיפה, במיוחד לסטודנטים, מורים ועסקים.",
+    cta_call:"התקשרו עכשיו", cta_wa:"שלחו וואטסאפ",
+    stat1:"לקוחות מרוצים", stat2:"שירותי דפוס", stat3:"ממליצים עלינו",
+    scroll:"גללו למטה",
+    marquee:["הדפסת מסמכים","צילום","מדבקות","כרטיסי ביקור","פורמט רחב","פוסטרים","חוברות","כריכה","סריקה","למינציה"],
+    srv_label:"השירותים שלנו", srv_title:"כל ההעתקות והדפוס במקום אחד",
+    srv_sub:"מהעתקה מהירה ועד פרויקט גדול — כל מה שצריך להדפיס, במחיר טוב ובזמן.",
+    s1t:"הדפסת מסמכים", s1d:"שחור-לבן וצבע, כל הכמויות — מעמוד בודד ועד תזה שלמה.",
+    s2t:"כרטיסי ביקור", s2d:"עם למינציה או בלי — רושם ראשוני מנצח.",
+    s3t:"העתקות וצילום", s3d:"",
+    s4t:"מדבקות", s4d:"",
+    s5t:"פורמט רחב", s5d:"פוסטרים, באנרים ושלטים בכל גודל.",
+    s6t:"למינציה", s6d:"",
+    s7t:"פוסטרים ושלטים", s7d:"צבעים חדים שנתפסים לעין.",
+    s8t:"חוברות וקטלוגים", s8d:"חוברות, קטלוגים ותיקי עבודות בכריכה מקצועית.",
+    s9t:"כריכה ותיוק", s9d:"",
+    s10t:"לוחות שנה", s10d:"",
+    srv_cta_t:"לא מצאתם את מה שחיפשתם?", srv_cta_d:"דברו איתנו — מדפיסים כמעט הכל.", srv_cta_b:"לשיחה בוואטסאפ",
+    wm:"העתקה · דפוס ·", gl_label:"מהעולם שלנו", gl_title:"צבע. נייר. דיו.",
+    gl_sub:"העבירו עכבר על תמונה — ותראו איך העולם שלנו מקבל צבע.",
+    g8:"הדפסה בפעולה",
+    c_fly:"הדפסות", c_box:"אריזות", c_st:"מדבקות", c_env:"מעטפות",
+    c_cal:"לוחות שנה", c_menu:"תפריטים", c_mix:"מוצרי דפוס", c_br:"חוברות",
+    about_label:"קצת עלינו", about_title:"מהיר. מדויק. נוח.",
+    about_card_big:"הנחות", about_card_cap:"לסטודנטים ולמורים",
+    alt_about:"מעצב גרפי מכין קובץ לדפוס — טאבלט, סקיצות ומניפת פנטון",
+    about_p1:"קופי פייסט הוא מרכז העתקות ודפוס בחיפה — שירות מהיר, מדויק ונוח לסטודנטים, מורים, בעלי מקצוע ועסקים. ציוד דיגיטלי, מחירים הוגנים ויחס אישי.",
+    f1_t:"ציוד דיגיטלי", f1_d:"מדפסות ומכונות צילום מהירות לאיכות מושלמת",
+    f2_t:"צוות אדיב", f2_d:"עוזרים בכל שלב — מהקובץ ועד המוצר המוגמר",
+    f3_t:"הנחה מיוחדת", f3_d:"לסטודנטים ולמורים — ומחירים הוגנים לכולם",
+    f4_t:"מהיר ובמקום", f4_d:"רוב העבודות מוכנות במקום או תוך זמן קצר",
+    pr_label:"איך זה עובד", pr_title:"מקובץ להדפסה בארבעה צעדים",
+    pr1_t:"שולחים קובץ", pr1_d:"מגיעים לחנות או שולחים בוואטסאפ / מייל",
+    pr2_t:"בוחרים ומאשרים", pr2_d:"נייר, גודל וכמות — ונעזור גם בעיצוב אם צריך",
+    pr3_t:"מדפיסים", pr3_d:"מדפיסים בציוד דיגיטלי מהיר ובאיכות גבוהה",
+    pr4_t:"מוכן!", pr4_d:"אוספים במקום — לרוב עוד באותו יום",
+    ts_label:"ממליצים עלינו", ts_title:"לקוחות אמיתיים, מילים אמיתיות",
+    ts:[
+      {t:"תודה על שירות מקצועי, סבלני ואדיב ועל עיצוב מושלם. ממשיכים לעבוד אתכם!",n:"אריאלה הרשקוביץ",r:"אתנחתא — מרחב טיפול",tone:"c"},
+      {t:"שירות מדהים, אירנה בגרפיקה עושה עבודה מדהימה. שלטים, כרטיסי ביקור, מדבקות — ומחירים נוחים בכל פעם.",n:"רודי קסוס",r:"בעל עסק",tone:"m"},
+      {t:"אין על קופי פייסט! מדפיסים מהר, נעימים ומחירים נוחים. ממליצה בחום.",n:"אסתר להמן",r:"עמותת לב אחד",tone:"y"},
+      {t:"שירות מקצועי, מהיר ואדיב. 100% מקצועיות!",n:"נוי נחמן",r:"לקוחה",tone:"c"},
+      {t:"מקום מעולה להדפסה בכמויות גדולות, ויש גם הנחה לסטודנטים.",n:"אלירן פלד",r:"סטודנט",tone:"m"},
+      {t:"שירות מעולה ומחירים הוגנים.",n:"אוהד מוסקו",r:"לקוח",tone:"y"},
+      {t:"שירות מקצועי, יחס אישי ומסור — כיף לעבוד אתכם.",n:"רון סולן",r:"לקוח",tone:"c"},
+      {t:"כיף להגיע לכאן — צילום בצבע ובשחור-לבן, תמיד בחיוך.",n:"יוספה סטאר",r:"לקוחה",tone:"m"},
+      {t:"שירות מקצועי, אדיב מאוד וסבלני.",n:"תומר שלו",r:"לקוח",tone:"y"}
+    ],
+    faq_label:"שאלות נפוצות", faq_title:"יש שאלה? יש תשובה",
+    faq1_q:"אילו קבצים מתאימים להדפסה?", faq1_a:"הכי טוב PDF (300DPI). אין קובץ מוכן? נעזור להכין.",
+    faq2_q:"תוך כמה זמן מוכן?", faq2_a:"רוב העבודות במקום או תוך זמן קצר. דחוף? דברו איתנו.",
+    faq3_q:"יש הנחות?", faq3_a:"כן — הנחה מיוחדת לסטודנטים ולמורים בהצגת תעודה.",
+    faq4_q:"אתם עוזרים גם בעיצוב?", faq4_a:"בהחלט — יש לנו גרפיקאית שתכין לכם קובץ מוכן לדפוס.",
+    ct_label:"צור קשר", ct_t1:"בואו נדפיס", ct_t2:"משהו ביחד",
+    ct_sub:"כתבו או התקשרו — נחזור אליכם מהר עם מחיר טוב.",
+    form_title:"השאירו פרטים — נחזור אליכם",
+    form_name:"שם", form_phone:"טלפון", form_product:"מה להדפיס?",
+    form_other:"אחר / עוד לא יודעים",
+    form_submit:"שלחו בקשה בוואטסאפ",
+    form_note:"הכפתור יפתח וואטסאפ עם הודעה מוכנה",
+    form_ok:"וואטסאפ נפתח — ההודעה מוכנה לשליחה",
+    err_name:"נא למלא שם", err_phone:"נא למלא מספר טלפון תקין",
+    wa_msg:(n,p,pr)=>`שלום! מדבר/ת ${n}, טלפון ${p}. מעוניין/ת ב: ${pr}. אשמח להצעת מחיר!`,
+    ct_phone:"טלפון", ct_email:"אימייל", ct_hours:"שעות פעילות", ct_hours_v:"ראשון–חמישי · 9:00–17:30 · שישי · 9:00–14:00",
+    ct_addr:"כתובת", ct_addr_v:"רחוב אינטרנשיונל 5, חיפה", waze:"נווטו בוויז",
+    ft_rights:"© 2026 קופי פייסט חיפה — מרכז העתקות ודפוס. כל הזכויות שמורות.",
+    ft_line:"מהיר · מדויק · נוח"
+  },
+  ru: {
+    _dir:"ltr", _lang:"ru", _toggle:"EN",
+    doc_title:"Copy Paste Haifa — копирование и печать в Хайфе",
+    brand:"Copy Paste", skip:"К содержанию",
+    nav_services:"Услуги", nav_gallery:"Галерея", nav_about:"О нас", nav_process:"Как это работает", nav_faq:"Вопросы", nav_contact:"Контакты",
+    hero_badge:"Центр копирования и печати · Хайфа",
+    hero_l1:"Печатаем", hero_l2:"ваши", hero_l3:"идеи.",
+    hero_sub:"Копирование, печать и полиграфия — быстро, точно и удобно. В Хайфе, особенно для студентов, преподавателей и бизнеса.",
+    cta_call:"Позвонить сейчас", cta_wa:"Написать в WhatsApp",
+    stat1:"довольных клиентов", stat2:"услуг печати", stat3:"рекомендуют нас",
+    scroll:"листайте вниз",
+    marquee:["Печать документов","Копирование","Наклейки","Визитки","Широкоформат","Постеры","Брошюры","Переплёт","Сканирование","Ламинация"],
+    srv_label:"Наши услуги", srv_title:"Всё копирование и печать в одном месте",
+    srv_sub:"От быстрой копии до большого проекта — всё, что нужно напечатать, по хорошей цене и в срок.",
+    s1t:"Печать документов", s1d:"Ч/б и цвет, любой тираж — от одной страницы до целого диплома.",
+    s2t:"Визитки", s2d:"С ламинацией или без — выигрышное первое впечатление.",
+    s3t:"Копирование", s3d:"",
+    s4t:"Наклейки", s4d:"",
+    s5t:"Широкоформат", s5d:"Постеры, баннеры и вывески любого размера.",
+    s6t:"Ламинация", s6d:"",
+    s7t:"Постеры и вывески", s7d:"Яркие цвета, которые цепляют взгляд.",
+    s8t:"Брошюры и каталоги", s8d:"Брошюры, каталоги и портфолио с профессиональным переплётом.",
+    s9t:"Переплёт и папки", s9d:"",
+    s10t:"Календари", s10d:"",
+    srv_cta_t:"Не нашли, что искали?", srv_cta_d:"Напишите нам — печатаем почти всё.", srv_cta_b:"Написать в WhatsApp",
+    wm:"КОПИЯ · ПЕЧАТЬ ·", gl_label:"Из нашего мира", gl_title:"Цвет. Бумага. Краска.",
+    gl_sub:"Наведите курсор на фото — и увидите, как наш мир обретает цвет.",
+    g8:"Печать в деле",
+    c_fly:"Печать", c_box:"Упаковка", c_st:"Наклейки", c_env:"Конверты",
+    c_cal:"Календари", c_menu:"Меню", c_mix:"Полиграфия", c_br:"Брошюры",
+    about_label:"О нас", about_title:"Быстро. Точно. Удобно.",
+    about_card_big:"Скидки", about_card_cap:"студентам и преподавателям",
+    alt_about:"Графический дизайнер готовит макет к печати: планшет, скетчи и веер Pantone",
+    about_p1:"Copy Paste — центр копирования и печати в Хайфе: быстрый, точный и удобный сервис для студентов, преподавателей, специалистов и бизнеса. Цифровое оборудование, честные цены и личное отношение.",
+    f1_t:"Цифровое оборудование", f1_d:"Быстрые принтеры и копиры для идеального качества",
+    f2_t:"Дружелюбная команда", f2_d:"Помогаем на каждом шаге — от файла до готового продукта",
+    f3_t:"Особая скидка", f3_d:"Студентам и преподавателям — и честные цены для всех",
+    f4_t:"Быстро и на месте", f4_d:"Большинство заказов готовы на месте или очень быстро",
+    pr_label:"Как это работает", pr_title:"От файла до печати за четыре шага",
+    pr1_t:"Присылаете файл", pr1_d:"Приходите в магазин или присылаете в WhatsApp / на почту",
+    pr2_t:"Выбираете и подтверждаете", pr2_d:"Бумага, размер и тираж — поможем и с дизайном, если нужно",
+    pr3_t:"Печатаем", pr3_d:"Печатаем на быстром цифровом оборудовании в высоком качестве",
+    pr4_t:"Готово!", pr4_d:"Забираете на месте — чаще всего в тот же день",
+    ts_label:"Отзывы", ts_title:"Настоящие клиенты, настоящие слова",
+    ts:[
+      {t:"Спасибо за профессиональный, терпеливый и любезный сервис и безупречный дизайн. Продолжаем работать с вами!",n:"Ариэла Гершкович",r:"Центр «Атнахта»",tone:"c"},
+      {t:"Потрясающий сервис, Ирена делает отличный дизайн. Вывески, визитки, наклейки — и всегда приятные цены.",n:"Руди Кессус",r:"Владелец бизнеса",tone:"m"},
+      {t:"Copy Paste — лучшие! Печатают быстро, приятные, цены удобные. Очень рекомендую.",n:"Эстер Леман",r:"НКО «Лев Эхад»",tone:"y"},
+      {t:"Профессиональный, быстрый и любезный сервис. 100% профессионализм!",n:"Ной Нахман",r:"Клиентка",tone:"c"},
+      {t:"Отличное место для печати больших тиражей, и есть скидка студентам.",n:"Эльран Пелед",r:"Студент",tone:"m"},
+      {t:"Отличный сервис и честные цены.",n:"Оад Моско",r:"Клиент",tone:"y"},
+      {t:"Профессиональный сервис, личное и внимательное отношение — приятно с вами работать.",n:"Рон Солан",r:"Клиент",tone:"c"},
+      {t:"Приятно сюда приходить — цветное и ч/б копирование, всегда с улыбкой.",n:"Йосефа Стар",r:"Клиентка",tone:"m"},
+      {t:"Профессиональный, очень любезный и терпеливый сервис.",n:"Томер Шалев",r:"Клиент",tone:"y"}
+    ],
+    faq_label:"Частые вопросы", faq_title:"Есть вопрос? Есть ответ",
+    faq1_q:"Какие файлы подходят для печати?", faq1_a:"Лучше всего PDF (300 DPI). Нет готового файла? Поможем подготовить.",
+    faq2_q:"Как быстро будет готово?", faq2_a:"Большинство заказов — на месте или очень быстро. Срочно? Свяжитесь с нами.",
+    faq3_q:"Есть скидки?", faq3_a:"Да — особая скидка для студентов и преподавателей по удостоверению.",
+    faq4_q:"Вы помогаете с дизайном?", faq4_a:"Конечно — у нас есть график, который подготовит файл к печати.",
+    ct_label:"Контакты", ct_t1:"Давайте напечатаем", ct_t2:"что-то вместе",
+    ct_sub:"Напишите или позвоните — быстро ответим с хорошей ценой.",
+    form_title:"Оставьте заявку — мы ответим",
+    form_name:"Имя", form_phone:"Телефон", form_product:"Что печатаем?",
+    form_other:"Другое / ещё не знаю",
+    form_submit:"Отправить заявку в WhatsApp",
+    form_note:"Кнопка откроет WhatsApp с готовым сообщением",
+    form_ok:"WhatsApp открыт — сообщение готово к отправке",
+    err_name:"Укажите имя", err_phone:"Укажите корректный номер телефона",
+    wa_msg:(n,p,pr)=>`Здравствуйте! Меня зовут ${n}, телефон ${p}. Нужно: ${pr}. Хочу узнать цену!`,
+    ct_phone:"Телефон", ct_email:"Email", ct_hours:"Часы работы", ct_hours_v:"вс–чт · 9:00–17:30 · пт · 9:00–14:00",
+    ct_addr:"Адрес", ct_addr_v:"ул. Интернешнл 5, Хайфа", waze:"Маршрут в Waze",
+    ft_rights:"© 2026 Copy Paste Haifa — центр копирования и печати. Все права защищены.",
+    ft_line:"Быстро · Точно · Удобно"
+  },
+  en: {
+    _dir:"ltr", _lang:"en", _toggle:"עב",
+    doc_title:"Copy Paste Haifa — copy & print center in Haifa",
+    brand:"Copy Paste", skip:"Skip to content",
+    nav_services:"Services", nav_gallery:"Gallery", nav_about:"About", nav_process:"How it works", nav_faq:"FAQ", nav_contact:"Contact",
+    hero_badge:"Copy & print center · Haifa",
+    hero_l1:"We print", hero_l2:"your", hero_l3:"ideas.",
+    hero_sub:"Copying, printing and print solutions — fast, accurate and convenient. In Haifa, made for students, teachers and businesses.",
+    cta_call:"Call now", cta_wa:"Message on WhatsApp",
+    stat1:"happy customers", stat2:"print services", stat3:"recommend us",
+    scroll:"scroll down",
+    marquee:["Document printing","Copying","Stickers","Business cards","Wide-format","Posters","Booklets","Binding","Scanning","Lamination"],
+    srv_label:"Our services", srv_title:"All your copy & print in one place",
+    srv_sub:"From a quick copy to a big project — everything you need to print, at a fair price and on time.",
+    s1t:"Document printing", s1d:"B/W and color, any quantity — from a single page to a full thesis.",
+    s2t:"Business cards", s2d:"Laminated or not — a winning first impression.",
+    s3t:"Copying", s3d:"",
+    s4t:"Stickers", s4d:"",
+    s5t:"Wide-format", s5d:"Posters, banners and signs at any size.",
+    s6t:"Lamination", s6d:"",
+    s7t:"Posters & signs", s7d:"Sharp colors that catch the eye.",
+    s8t:"Booklets & catalogs", s8d:"Booklets, catalogs and portfolios, professionally bound.",
+    s9t:"Binding & folders", s9d:"",
+    s10t:"Calendars", s10d:"",
+    srv_cta_t:"Didn't find what you need?", srv_cta_d:"Talk to us — we print almost anything.", srv_cta_b:"Chat on WhatsApp",
+    wm:"COPY · PASTE ·", gl_label:"From our world", gl_title:"Color. Paper. Ink.",
+    gl_sub:"Hover over a photo — and watch our world turn to color.",
+    g8:"Printing at work",
+    c_fly:"Prints", c_box:"Packaging", c_st:"Stickers", c_env:"Envelopes",
+    c_cal:"Calendars", c_menu:"Menus", c_mix:"Print products", c_br:"Booklets",
+    about_label:"About us", about_title:"Fast. Accurate. Convenient.",
+    about_card_big:"Discounts", about_card_cap:"students & teachers",
+    alt_about:"A graphic designer preparing a print file, with a tablet, sketches and a Pantone fan",
+    about_p1:"Copy Paste is a copy & print center in Haifa — fast, accurate and convenient service for students, teachers, professionals and businesses. Digital equipment, fair prices and a personal touch.",
+    f1_t:"Digital equipment", f1_d:"Fast printers and copiers for perfect quality",
+    f2_t:"Friendly team", f2_d:"We help at every step — from file to finished product",
+    f3_t:"Special discount", f3_d:"For students and teachers — plus fair prices for all",
+    f4_t:"Fast, on the spot", f4_d:"Most jobs are ready on the spot or very quickly",
+    pr_label:"How it works", pr_title:"From file to print in four steps",
+    pr1_t:"Send your file", pr1_d:"Come in, or send it by WhatsApp / email",
+    pr2_t:"Choose & approve", pr2_d:"Paper, size and quantity — we'll help with design too",
+    pr3_t:"We print", pr3_d:"We print on fast digital gear at high quality",
+    pr4_t:"Ready!", pr4_d:"Pick it up — usually the same day",
+    ts_label:"Reviews", ts_title:"Real customers, real words",
+    ts:[
+      {t:"Thank you for professional, patient and kind service and perfect design. We keep coming back!",n:"Ariella Hershkovitz",r:"Atnachta center",tone:"c"},
+      {t:"Amazing service — Irena does great graphic work. Signs, business cards, stickers, and great prices every time.",n:"Rudy Kessous",r:"Business owner",tone:"m"},
+      {t:"No one beats Copy Paste! Fast printing, friendly people, great prices. Highly recommend.",n:"Ester Lehman",r:"Lev Echad NGO",tone:"y"},
+      {t:"Professional, fast and kind service. 100% professional!",n:"Noy Nahman",r:"Customer",tone:"c"},
+      {t:"Great place for large-volume printing, plus a student discount.",n:"Eliran Peled",r:"Student",tone:"m"},
+      {t:"Excellent service and fair prices.",n:"Ohad Mosko",r:"Customer",tone:"y"},
+      {t:"Professional service, personal and dedicated — a pleasure to work with.",n:"Ron Solan",r:"Customer",tone:"c"},
+      {t:"A pleasure to come here — color and B/W copying, always with a smile.",n:"Yosefa Starr",r:"Customer",tone:"m"},
+      {t:"Professional, very kind and patient service.",n:"Tomer Shalev",r:"Customer",tone:"y"}
+    ],
+    faq_label:"FAQ", faq_title:"Got a question? We've got answers",
+    faq1_q:"Which files are best for printing?", faq1_a:"PDF (300 DPI) works best. No file ready? We'll help prepare it.",
+    faq2_q:"How fast is it ready?", faq2_a:"Most jobs are ready on the spot or very soon. In a rush? Just ask.",
+    faq3_q:"Are there any discounts?", faq3_a:"Yes — a special discount for students and teachers with a valid ID.",
+    faq4_q:"Do you help with design?", faq4_a:"Absolutely — our in-house designer will prep a print-ready file.",
+    ct_label:"Contact", ct_t1:"Let's print", ct_t2:"something together",
+    ct_sub:"Message or call — we'll get back fast with a good price.",
+    form_title:"Leave your details — we'll get back",
+    form_name:"Name", form_phone:"Phone", form_product:"What to print?",
+    form_other:"Other / not sure yet",
+    form_submit:"Send request on WhatsApp",
+    form_note:"The button opens WhatsApp with a ready message",
+    form_ok:"WhatsApp opened — your message is ready",
+    err_name:"Please enter your name", err_phone:"Please enter a valid phone number",
+    wa_msg:(n,p,pr)=>`Hi! I'm ${n}, phone ${p}. I need: ${pr}. Could I get a quote?`,
+    ct_phone:"Phone", ct_email:"Email", ct_hours:"Opening hours", ct_hours_v:"Sun–Thu · 9:00–17:30 · Fri · 9:00–14:00",
+    ct_addr:"Address", ct_addr_v:"International St 5, Haifa", waze:"Open in Waze",
+    ft_rights:"© 2026 Copy Paste Haifa — copy & print center. All rights reserved.",
+    ft_line:"Fast · Accurate · Convenient"
+  }
+};
+
+/* services: [key, accent, span class, featured?, photo, iconPath]
+   photos ONLY where they truthfully match the card's subject:
+   s5 invitations→wedding, s7 posters→backlit posters, s8 brochures→book fan */
+const SERVICES = [
+  ["s1","var(--c)","span4",true,null,'<path d="M4 4h16v12H4z"/><path d="M4 20h10M4 16l5-5 4 4 3-3 4 4"/>'],
+  ["s2","var(--m)","span2",true,null,'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h6M7 14h4"/>'],
+  ["s3","var(--y-text)","",false,null,'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/>'],
+  ["s4","var(--c)","",false,null,'<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8l-8 8a8 8 0 0 1 0-16z" fill="currentColor" opacity=".2" stroke="none"/>'],
+  ["s6","var(--y-text)","",false,null,'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>'],
+  ["s5","var(--m)","",true,null,'<path d="M20 8v13H4V8"/><path d="M2 4h20v4H2z"/><path d="M12 8v13M9 4a3 3 0 0 1 3 3 3 3 0 0 1 3-3"/>'],
+  ["s7","var(--c)","",true,null,'<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/>'],
+  ["s8","var(--m)","",true,null,'<path d="M12 5c-2-1.5-4.5-2-8-2v16c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2V3c-3.5 0-6 .5-8 2z"/><path d="M12 5v16"/>'],
+  ["s9","var(--y-text)","span3",false,null,'<path d="M3 6a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'],
+  ["s10","var(--y-text)","span3",false,null,'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/>']
+];
+/* gallery: 30 client photos, 15 per row. Order is hand-arranged so that
+   no two same-type shots (flyer/box/sticker/envelope/menu/…) sit next to
+   each other — including the loop seam (last item wraps to first) */
+const GALLERY_TOP = [
+  ["img/lenta/1.jpg","c_fly"],["img/lenta/7.jpg","c_box"],["img/lenta/20.jpg","c_menu"],
+  ["img/lenta/11.jpg","c_st"],["img/lenta/15.jpg","c_env"],["img/lenta/4.jpg","c_br"],
+  ["img/lenta/22.jpg","c_menu"],["img/lenta/9.jpg","c_box"],["img/lenta/3.jpg","c_fly"],
+  ["img/lenta/13.jpg","c_st"],["img/lenta/19.jpg","c_cal"],["img/lenta/24.jpg","c_menu"],
+  ["img/lenta/17.jpg","c_env"],["img/lenta/26.jpg","c_mix"],["img/lenta/30.jpg","g8"]
+];
+const GALLERY_BOTTOM = [
+  ["img/lenta/21.jpg","c_menu"],["img/lenta/8.jpg","c_box"],["img/lenta/12.jpg","c_st"],
+  ["img/lenta/16.jpg","c_env"],["img/lenta/5.jpg","c_br"],["img/lenta/27.jpg","c_mix"],
+  ["img/lenta/23.jpg","c_menu"],["img/lenta/10.jpg","c_box"],["img/lenta/14.jpg","c_st"],
+  ["img/lenta/18.jpg","c_env"],["img/lenta/6.jpg","c_br"],["img/lenta/28.jpg","c_mix"],
+  ["img/lenta/25.jpg","c_menu"],["img/lenta/2.jpg","c_fly"],["img/lenta/29.jpg","c_mix"]
+];
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* build bento */
+$("#services-grid").innerHTML = SERVICES.map(([k,accent,span,feat,photo,icon],i)=>`
+  <div class="card reveal tilt ${span} ${feat?"featured":""}" style="--accent:${accent};--d:${(i%4)*.04}s">
+    <span class="card-num" aria-hidden="true">${String(i+1).padStart(2,"0")}</span>
+    ${photo?`<div class="card-photo img-reveal"><img src="${photo}" alt="" loading="lazy" decoding="async"></div>`:""}
+    <div class="card-icon"><svg width="${feat?28:24}" height="${feat?28:24}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon}</svg></div>
+    <h3 data-i18n="${k}t"></h3>
+    ${feat?`<p data-i18n="${k}d"></p>`:""}
+    ${feat&&!photo?`<svg class="bg-ic" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">${icon}</svg>`:""}
+  </div>`).join("") + `
+  <div class="bento-cta reveal">
+    <h3 data-i18n="srv_cta_t"></h3>
+    <a class="btn btn-primary magnetic" href="https://wa.me/972527569070" target="_blank" rel="noopener"><span data-i18n="srv_cta_b"></span></a>
+  </div>`;
+
+/* build gallery rows: two identical halves, each ≥ one viewport wide, so the
+   JS wrap at half-width lands on an identical frame (no loading="lazy" here:
+   transform-based marquee keeps layout position off-screen and lazy never fires) */
+function fillGalleryRow(track, items){
+  const setHTML = items.map(([src,cap])=>`
+    <figure class="g-item">
+      <img src="${src}" alt="" decoding="async" width="300" height="210">
+      <figcaption data-i18n="${cap}"></figcaption>
+    </figure>`).join("");
+  track.innerHTML = setHTML;
+  const setW = track.scrollWidth || 1;
+  const sets = Math.max(1, Math.ceil(innerWidth / setW));
+  track.innerHTML = Array(sets * 2).fill(setHTML).join("");
+}
+fillGalleryRow($("#g-row-1"), GALLERY_TOP);
+fillGalleryRow($("#g-row-2"), GALLERY_BOTTOM);
+
+/* char-split hero title (Complex tier: rotateX + 15ms stagger) */
+function splitHero(){
+  if(reduced) return;
+  $$("#hero-title .w").forEach(w=>{
+    const text = w.textContent;
+    let ci = 0;
+    w.innerHTML = [...text].map(ch=>{
+      if(ch===" ") return " ";
+      return `<span class="ch" style="--ci:${ci++}">${ch}</span>`;
+    }).join("");
+  });
+}
+
+/* i18n apply */
+let lang = localStorage.getItem("cp-lang") || "he";
+function applyLang(l){
+  const d = I18N[l];
+  document.documentElement.lang = d._lang;
+  document.documentElement.dir = d._dir;
+  $$("[data-i18n]").forEach(el=>{
+    const v = d[el.dataset.i18n];
+    if(v!==undefined) el.textContent = v;
+  });
+  $$("[data-i18n-alt]").forEach(el=>{
+    const v = d[el.dataset.i18nAlt];
+    if(v!==undefined) el.alt = v;
+  });
+  $("#lang-toggle").textContent = d._toggle;
+  /* seamless loop = exactly TWO identical halves, each at least one viewport
+     wide (the -50% keyframe then lands on an identical frame — no visible jump) */
+  const fillLoop = (track, setHTML) => {
+    track.innerHTML = setHTML;
+    const setW = track.scrollWidth || 1;
+    const sets = Math.max(1, Math.ceil(innerWidth / setW));
+    track.innerHTML = Array(sets * 2).fill(setHTML).join("");
+  };
+  fillLoop($("#marquee-track"), d.marquee.map(m=>`<span><i></i>${m}</span>`).join(""));
+  $("#in-product").innerHTML =
+    d.marquee.map(m=>`<option>${m}</option>`).join("") + `<option>${d.form_other}</option>`;
+  const q = t=>`
+    <figure class="quote" data-tone="${t.tone}">
+      <span class="qmark" aria-hidden="true">”</span>
+      <blockquote><p>${t.t}</p></blockquote>
+      <footer><span class="avatar" aria-hidden="true">${t.n[0]}</span><div><b>${t.n}</b><span>${t.r}</span></div></footer>
+      <span class="stars" aria-label="5/5">★★★★★</span>
+    </figure>`;
+  fillLoop($("#t-track"), d.ts.map(q).join(""));
+  document.title = d.doc_title;
+  localStorage.setItem("cp-lang", l);
+  splitHero();
+}
+applyLang(lang);
+const LANGS = ["he","ru","en"];
+$("#lang-toggle").addEventListener("click",()=>{
+  lang = LANGS[(LANGS.indexOf(lang)+1)%LANGS.length];
+  applyLang(lang);
+});
+
+/* theme */
+let theme = localStorage.getItem("cp-theme") ||
+  (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+function applyTheme(t){
+  document.documentElement.dataset.theme = t;
+  localStorage.setItem("cp-theme", t);
+}
+applyTheme(theme);
+$("#theme-toggle").addEventListener("click",()=>{
+  theme = theme==="dark" ? "light" : "dark";
+  applyTheme(theme);
+});
+
+/* preloader */
+window.addEventListener("load",()=> setTimeout(()=>$("#loader").classList.add("done"), 450));
+setTimeout(()=>$("#loader").classList.add("done"), 2500);
+
+/* ============ SCROLL ENGINE (one rAF pass) ============ */
+const nav = $("#nav"), topBtn = $("#top-btn"), progress = $("#progress");
+const sections = $$("main section[id]");
+const heroInner = $(".hero-inner");
+const watermark = $("#watermark");
+const gallerySec = $("#gallery");
+const aboutVisual = $(".about-visual");
+let lastY = scrollY, velocity = 0, ticking = false;
+
+function onScroll(){
+  velocity += scrollY - lastY;
+  lastY = scrollY;
+  if(ticking) return; ticking = true;
+  requestAnimationFrame(()=>{
+    const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
+    progress.style.width = (h>0 ? y/h*100 : 0) + "%";
+    nav.classList.toggle("scrolled", y>40);
+    topBtn.classList.toggle("show", y>700);
+    let current = "";
+    sections.forEach(s=>{ if(y >= s.offsetTop - 200) current = s.id; });
+    $$(".nav-links a").forEach(a=>a.classList.toggle("active", a.getAttribute("href")==="#"+current));
+    if(!reduced){
+      /* hero scrub parallax */
+      if(y < innerHeight && heroInner){
+        heroInner.style.transform = `translateY(${y*.12}px)`;
+        heroInner.style.opacity = Math.max(0, 1 - y/(innerHeight*.9));
+      }
+      /* watermark scrub */
+      if(watermark && gallerySec){
+        const r = gallerySec.getBoundingClientRect();
+        const p = 1 - (r.bottom)/(innerHeight + r.height);
+        watermark.style.transform = `translate(${(p-.5)*-40}%, -50%)`;
+      }
+      /* about: CMYK sheets fan out as the section scrolls through */
+      if(aboutVisual){
+        const r = aboutVisual.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, 1 - r.bottom/(innerHeight + r.height)));
+        aboutVisual.style.setProperty("--p", p.toFixed(3));
+      }
+    }
+    ticking = false;
+  });
+}
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:reduced?"auto":"smooth"}));
+
+/* gallery rows: rAF marquee, speed reacts to scroll velocity */
+if(!reduced){
+  const rows = [
+    {el:$("#g-row-1"), x:0, dir:-1},
+    {el:$("#g-row-2"), x:0, dir:1}
+  ];
+  (function gLoop(){
+    velocity *= .92;
+    const boost = Math.min(Math.abs(velocity)*.05, 3);
+    rows.forEach(r=>{
+      if(!r.el) return;
+      const half = r.el.scrollWidth/2;
+      if(half>0){
+        r.x += r.dir * (.4 + boost);
+        if(r.x <= -half) r.x += half;
+        if(r.x > 0) r.x -= half;
+        r.el.style.transform = `translateX(${r.x}px)`;
+      }
+    });
+    requestAnimationFrame(gLoop);
+  })();
+}
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
+$$(".reveal").forEach(el=>io.observe(el));
+/* steps dashed line + standalone image reveals */
+const io2 = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add("in"); io2.unobserve(e.target); }
+}),{threshold:.3});
+["#steps"].forEach(s=>{ const el=$(s); if(el) io2.observe(el); });
+
+/* counters */
+const cio = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  cio.unobserve(e.target);
+  const el = e.target, target = +el.dataset.target, t0 = performance.now(), dur = 2200;
+  if(reduced){ el.textContent = target.toLocaleString(); return; }
+  (function tick(t){
+    const p = Math.min((t-t0)/dur, 1), ease = 1-Math.pow(1-p,4);
+    el.textContent = Math.round(target*ease).toLocaleString();
+    if(p<1) requestAnimationFrame(tick);
+  })(t0);
+}),{threshold:.6});
+$$(".counter").forEach(el=>cio.observe(el));
+
+/* ink-drop ripple on buttons (press feedback ≤100ms) */
+if(!reduced) document.addEventListener("pointerdown",e=>{
+  const btn = e.target.closest(".btn");
+  if(!btn) return;
+  const r = btn.getBoundingClientRect(), d = Math.max(r.width,r.height);
+  const ink = document.createElement("span");
+  ink.className = "ink";
+  ink.style.cssText = `width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;
+  btn.appendChild(ink);
+  setTimeout(()=>ink.remove(), 650);
+});
+
+/* mobile menu */
+const burger = $("#burger"), mm = $("#mobile-menu");
+burger.addEventListener("click",()=>{
+  const open = mm.classList.toggle("open");
+  document.body.classList.toggle("menu-open", open);
+  burger.setAttribute("aria-expanded", open);
+});
+mm.addEventListener("click",e=>{
+  if(e.target.closest("a")){
+    mm.classList.remove("open"); document.body.classList.remove("menu-open");
+    burger.setAttribute("aria-expanded","false");
+  }
+});
+
+/* lead form → prefilled WhatsApp */
+const form = $("#lead-form"), fName = $("#f-name"), fPhone = $("#f-phone");
+const inName = $("#in-name"), inPhone = $("#in-phone");
+const phoneOk = v => /^[+\d][\d\s-]{7,15}$/.test(v.trim());
+function validate(field, input, test){
+  const ok = test(input.value);
+  field.classList.toggle("invalid", !ok);
+  return ok;
+}
+inName.addEventListener("blur",()=>{ if(inName.value) validate(fName,inName,v=>v.trim().length>=2); });
+inPhone.addEventListener("blur",()=>{ if(inPhone.value) validate(fPhone,inPhone,phoneOk); });
+inName.addEventListener("input",()=>fName.classList.remove("invalid"));
+inPhone.addEventListener("input",()=>fPhone.classList.remove("invalid"));
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const okN = validate(fName,inName,v=>v.trim().length>=2);
+  const okP = validate(fPhone,inPhone,phoneOk);
+  if(!okN){ inName.focus(); return; }
+  if(!okP){ inPhone.focus(); return; }
+  const d = I18N[lang];
+  const msg = d.wa_msg(inName.value.trim(), inPhone.value.trim(), $("#in-product").value);
+  window.open("https://wa.me/972527569070?text="+encodeURIComponent(msg),"_blank","noopener");
+  const ok = $("#form-ok");
+  ok.classList.add("show");
+  setTimeout(()=>ok.classList.remove("show"), 5000);
+});
+
+/* fine-pointer extras: cursor, tilt, magnetic, collage parallax */
+if(matchMedia("(pointer:fine)").matches && !reduced){
+  document.body.classList.add("cursor-on");
+  const dot = $("#cursor-dot"), ring = $("#cursor-ring");
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  addEventListener("mousemove",e=>{ mx=e.clientX; my=e.clientY; dot.style.transform=`translate(${mx}px,${my}px)`; });
+  (function loop(){
+    rx+=(mx-rx)*.16; ry+=(my-ry)*.16;
+    ring.style.transform=`translate(${rx}px,${ry}px)`;
+    requestAnimationFrame(loop);
+  })();
+  $$("a,button,summary,.card,.g-item").forEach(el=>{
+    el.addEventListener("mouseenter",()=>document.body.classList.add("cursor-grow"));
+    el.addEventListener("mouseleave",()=>document.body.classList.remove("cursor-grow"));
+  });
+  $$(".tilt").forEach(card=>{
+    card.addEventListener("mousemove",e=>{
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX-r.left)/r.width - .5, py = (e.clientY-r.top)/r.height - .5;
+      card.style.transform = `translateY(-5px) rotateX(${-py*6}deg) rotateY(${px*6}deg)`;
+    });
+    card.addEventListener("mouseleave",()=>card.style.transform="");
+  });
+  $$(".magnetic").forEach(btn=>{
+    btn.addEventListener("mousemove",e=>{
+      const r = btn.getBoundingClientRect();
+      btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.15}px,${(e.clientY-r.top-r.height/2)*.25}px)`;
+    });
+    btn.addEventListener("mouseleave",()=>btn.style.transform="");
+  });
+  /* hero collage mouse parallax (depth per card) */
+  const collage = $("#hero-collage");
+  if(collage){
+    const cards = $$(".pcard");
+    const hero = $("#hero");
+    hero.addEventListener("mousemove",e=>{
+      const cx = (e.clientX/innerWidth - .5), cy = (e.clientY/innerHeight - .5);
+      cards.forEach((c,i)=>{
+        const depth = (i+1)*7;
+        c.style.transform = `translate(${cx*depth}px,${cy*depth}px)`;
+      });
+    });
+    hero.addEventListener("mouseleave",()=>cards.forEach(c=>c.style.transform=""));
+  }
+}
+/* gallery image reveals fire independently */
+const gio = new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){ e.target.classList.add("in"); gio.unobserve(e.target); }
+}),{threshold:.2});
+$$("#gallery .img-reveal, .card .img-reveal").forEach(el=>gio.observe(el));
+</script>
+</body>
+</html>
