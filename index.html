@@ -754,7 +754,8 @@ html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
 @keyframes faqIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 
 /* ============ CONTACT ============ */
-#contact .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:start}
+#contact .contact-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3vw,2.5rem);align-items:stretch}
+#contact .contact-grid>.map-wrap{grid-column:1/-1}
 .contact-title{font-size:clamp(1.8rem,3.8vw,2.8rem);font-weight:900;line-height:1.08}
 .contact-title em{
   font-style:normal;
@@ -793,7 +794,7 @@ html[dir="ltr"] .field select{background-position:right 1rem center}
 .form-note{font-size:.82rem;color:var(--ink-soft);display:flex;gap:.45rem;align-items:center}
 .form-ok{display:none;align-items:center;gap:.5rem;font-weight:600;color:var(--wa-strong);font-size:.92rem}
 .form-ok.show{display:flex}
-.contact-side{display:grid;gap:.6rem}
+.contact-side{display:grid;gap:.6rem;grid-template-rows:repeat(4,1fr)}
 .ccard{
   display:flex;align-items:center;gap:.85rem;min-height:48px;
   background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-sm);
@@ -808,38 +809,23 @@ a.ccard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .ccard b{display:block;font-size:1rem}
 .ccard span{font-size:.85rem;color:var(--ink-soft)}
 .ccard .val{direction:ltr;unicode-bidi:embed}
+.ccard .val a{color:inherit;text-decoration:none;border-radius:3px}
+.ccard .val a:hover{color:var(--ink);text-decoration:underline}
+.tel-sep{font-style:normal;color:var(--line-2);margin:0 .5rem}
 .map-wrap{
   border-radius:var(--r-md);overflow:hidden;border:1px solid var(--card-line);
   position:relative;background:var(--card);
 }
 /* local OpenStreetMap: 3×3 tiles shipped with the site — renders everywhere, no external requests */
-.osm-map{position:relative;height:180px;overflow:hidden;direction:ltr;background:#eef0ea}
-.osm-tiles{
-  display:grid;grid-template-columns:repeat(3,1fr);position:absolute;
-  /* grid is oversized (≥130% of the viewport) so shifting it to centre the shop
-     never exposes an empty edge; left/top 50% + the negative translate put the
-     shop's tile-math point (41.4%/42.78% of the grid) exactly at the centre */
-  width:max(130%,230px);left:50%;top:50%;transform:translate(-41.4%,-42.78%);
-}
-.osm-tiles img{width:100%;height:auto}
-html[data-theme="dark"] .osm-tiles img{filter:grayscale(.5) invert(.92) hue-rotate(180deg)}
-/* Copy Paste Haifa — International St 5, Haifa (32.7813482N 35.0092643E).
-   Pin sits at 41.40%/42.78% of the z16 3×3 grid; the .osm-tiles transform
-   shifts the grid so that point lands at the center of the 180px viewport. */
-.osm-pin{
-  position:absolute;top:42.78%;left:41.40%;translate:-50% -100%;z-index:2;
-  color:var(--m);filter:drop-shadow(0 3px 4px rgba(0,0,0,.35));
-  animation:pinDrop .6s var(--ease-back) both;
-}
-@keyframes pinDrop{from{translate:-50% -220%;opacity:0}to{translate:-50% -100%;opacity:1}}
-.osm-attr{
-  position:absolute;bottom:4px;right:6px;z-index:2;
-  font-size:.62rem;color:#333;background:rgba(255,255,255,.78);
-  padding:1px 7px;border-radius:8px;
-}
-/* invisible extended hit area: the visual chip stays tiny (legal caption),
-   but the tap target meets the 44px minimum */
-.osm-attr::after{content:"";position:absolute;inset:-14px}
+/* интерактивная карта: z-index:0 замыкает слои Leaflet внутри блока,
+   иначе его панели всплыли бы поверх закреплённой шапки */
+.osm-map{position:relative;height:320px;overflow:hidden;direction:ltr;background:#eef0ea;z-index:0}
+.leaflet-container{font:inherit;background:#eef0ea}
+html[data-theme="dark"] .leaflet-tile{filter:grayscale(.5) invert(.92) hue-rotate(180deg)}
+.map-pin{color:var(--m);filter:drop-shadow(0 3px 4px rgba(0,0,0,.35));animation:pinDrop .6s var(--ease-back) both}
+@keyframes pinDrop{from{translate:0 -120%;opacity:0}to{translate:0 0;opacity:1}}
+.leaflet-control-attribution{font-size:.62rem}
+.leaflet-control-attribution a{color:#0a58a8}
 .map-actions{display:flex;gap:.6rem;padding:.8rem;flex-wrap:wrap}
 .map-btn{
   display:inline-flex;align-items:center;gap:.45rem;min-height:44px;
@@ -909,6 +895,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
   .card,.card.span3,.card.span4{grid-column:span 1}
   .card.featured{grid-column:span 2}
   #about .about-grid,#contact .contact-grid{grid-template-columns:1fr}
+  .contact-side{grid-template-rows:none}
   .about-visual{max-width:420px;margin-inline:auto;width:100%}
   .steps{grid-template-columns:1fr 1fr;gap:2rem 1rem}
   .steps::before{display:none}
@@ -936,6 +923,8 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
   .watermark{display:none}
 }
 </style>
+<link rel="stylesheet" href="lib/leaflet.css">
+<script src="lib/leaflet.js" defer></script>
 </head>
 <body>
 
@@ -978,7 +967,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
       </button>
       <a class="nav-cta" href="tel:+972527569070">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span class="val">052-756-9070</span>
+        <span class="val">(052) 756-90-70</span>
       </a>
       <button id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -994,7 +983,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
     <li><a href="#process" data-i18n="nav_process">איך זה עובד</a></li>
     <li><a href="#faq" data-i18n="nav_faq">שאלות</a></li>
     <li><a href="#contact" data-i18n="nav_contact">צור קשר</a></li>
-    <li><a href="tel:+972527569070" class="val">052-756-9070</a></li>
+    <li><a href="tel:+972527569070" class="val">(052) 756-90-70</a></li>
   </ul>
 </div>
 
@@ -1206,10 +1195,10 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
         </form>
       </div>
       <div class="contact-side">
-        <a class="ccard reveal" data-tone="c" href="tel:+972527569070">
+          <div class="ccard reveal" data-tone="c">
           <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <div><b data-i18n="ct_phone">טלפון</b><span class="val" style="display:block">052-756-9070</span><span class="val" style="display:block">04-832-5444</span></div>
-        </a>
+            <div><b data-i18n="ct_phone">טלפון</b><span class="val" style="display:block"><a href="tel:+972527569070">(052) 756-90-70</a><i class="tel-sep" aria-hidden="true">·</i><a href="tel:+97248325444">(04) 832-54-44</a></span></div>
+          </div>
         <a class="ccard reveal" data-tone="m" style="--d:.04s" href="mailto:yfnosh@gmail.com">
           <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
           <div><b data-i18n="ct_email">אימייל</b><span class="val">yfnosh@gmail.com</span></div>
@@ -1222,16 +1211,9 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
           <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
           <div><b data-i18n="ct_addr">כתובת</b><span data-i18n="ct_addr_v">רחוב אינטרנשיונל 5, חיפה</span></div>
         </a>
+      </div>
         <div class="map-wrap reveal" style="--d:.12s">
-          <div class="osm-map" role="img" aria-label="Map — Copy Paste Haifa, International St 5, Haifa">
-            <div class="osm-tiles" aria-hidden="true">
-              <img src="img/osm/t16-39140-26444.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39141-26444.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39142-26444.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39140-26445.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39141-26445.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39142-26445.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39140-26446.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39141-26446.png" alt="" width="256" height="256" loading="lazy" decoding="async"><img src="img/osm/t16-39142-26446.png" alt="" width="256" height="256" loading="lazy" decoding="async">
-              <span class="osm-pin" aria-hidden="true">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="#fff" stroke-width="1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" fill="#fff" stroke="none"/></svg>
-              </span>
-            </div>
-            <a class="osm-attr" href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>
-          </div>
+          <div id="map" class="osm-map" role="region" aria-label="Карта: Copy Paste Haifa, International 5, Хайфа"></div>
           <div class="map-actions">
             <a class="map-btn" href="https://waze.com/ul?ll=32.7813482,35.0092643&navigate=yes" target="_blank" rel="noopener">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1243,7 +1225,6 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
             </a>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1835,6 +1816,32 @@ const gio = new IntersectionObserver(es=>es.forEach(e=>{
   if(e.isIntersecting){ e.target.classList.add("in"); gio.unobserve(e.target); }
 }),{threshold:.2});
 $$("#gallery .img-reveal, .card .img-reveal").forEach(el=>gio.observe(el));
+/* ===== интерактивная карта (Leaflet, библиотека лежит в lib/) ===== */
+document.addEventListener("DOMContentLoaded",()=>{
+  const el = document.getElementById("map");
+  if(!el || typeof L === "undefined") return;      // библиотека не загрузилась — блок просто пустой
+  const POS = [32.7813482, 35.0092643];
+  let built = false;
+  const build = () => {
+    if(built) return; built = true;
+    const map = L.map(el,{scrollWheelZoom:false, zoomControl:true}).setView(POS,17);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
+      maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+    }).addTo(map);
+    L.marker(POS,{title:"Copy Paste Haifa", icon:L.divIcon({
+      className:"map-pin", iconSize:[32,32], iconAnchor:[16,32],
+      html:'<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="#fff" stroke-width="1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" fill="#fff" stroke="none"/></svg>'
+    })}).addTo(map);
+    /* колесо мыши перехватываем только после клика по карте — иначе страница
+       перестала бы прокручиваться, когда курсор проходит над картой */
+    map.once("click",()=>map.scrollWheelZoom.enable());
+  };
+  /* тайлы грузим лишь когда посетитель дошёл до карты */
+  if("IntersectionObserver" in window)
+    new IntersectionObserver((e,o)=>{ if(e[0].isIntersecting){ build(); o.disconnect(); } },{rootMargin:"300px"}).observe(el);
+  else build();
+});
+
 </script>
 </body>
 </html>
