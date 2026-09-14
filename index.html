@@ -792,7 +792,7 @@ footer.site .cmyk-line i:nth-child(3){background:var(--y)}
 footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
 .ft-social{display:flex;gap:.6rem;margin-bottom:.2rem}
 .ft-social a{
-  width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
   border:1px solid var(--line);color:var(--ink-soft);
   transition:transform var(--dur-micro) var(--ease),background var(--dur-micro),color var(--dur-micro);
 }
@@ -1514,7 +1514,14 @@ function splitHero(){
 }
 
 /* i18n apply */
-let lang = localStorage.getItem("cp-lang") || "he";
+/* хранилище может быть запрещено настройками приватности или встроенным
+   браузером соцсети — тогда обращение бросает исключение. Гасим его, иначе
+   падает весь скрипт и страница застревает на экране загрузки */
+const store = {
+  get(k){ try { return localStorage.getItem(k) } catch(e){ return null } },
+  set(k,v){ try { localStorage.setItem(k,v) } catch(e){} }
+};
+let lang = store.get("cp-lang") || "he";
 function applyLang(l){
   const d = I18N[l];
   document.documentElement.lang = d._lang;
@@ -1548,7 +1555,7 @@ function applyLang(l){
     </figure>`;
   fillLoop($("#t-track"), d.ts.map(q).join(""));
   document.title = d.doc_title;
-  localStorage.setItem("cp-lang", l);
+  store.set("cp-lang", l);
   splitHero();
 }
 applyLang(lang);
@@ -1559,11 +1566,11 @@ $("#lang-toggle").addEventListener("click",()=>{
 });
 
 /* theme */
-let theme = localStorage.getItem("cp-theme") ||
+let theme = store.get("cp-theme") ||
   (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 function applyTheme(t){
   document.documentElement.dataset.theme = t;
-  localStorage.setItem("cp-theme", t);
+  store.set("cp-theme", t);
 }
 applyTheme(theme);
 $("#theme-toggle").addEventListener("click",()=>{
