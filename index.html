@@ -173,6 +173,7 @@
   /* semantic — paper theme */
   --bg:#F7F5F0; --bg-2:#FFFFFF; --ink:#161514; --ink-soft:#54514C;
   --line:rgba(22,21,20,.1); --card:#FFFFFF; --card-line:rgba(22,21,20,.08);
+  --field-line:rgba(22,21,20,.5); /* рамка поля ввода ≥3:1 */
   --shadow:0 20px 60px -20px rgba(22,21,20,.18);
   --glass:rgba(247,245,240,.72);
   --wa:#1DA851; --wa-strong:#128C43;
@@ -186,11 +187,13 @@
   --ease-back:cubic-bezier(.34,1.56,.64,1);
   /* z-scale */
   --nav-h:107px;
-  --z-content:1; --z-float:80; --z-grain:90; --z-nav:100; --z-menu:105; --z-progress:120; --z-loader:200;
+  /* меню ниже шапки: бургер-крестик, язык и тема остаются видны и нажимаются */
+  --z-content:1; --z-float:80; --z-grain:90; --z-menu:95; --z-nav:100; --z-progress:120; --z-loader:200;
 }
 html[data-theme="dark"]{
   --bg:#111013; --bg-2:#18171b; --ink:#F2EFE9; --ink-soft:#A8A49D;
   --line:rgba(242,239,233,.12); --card:#1c1b20; --card-line:rgba(242,239,233,.09);
+  --field-line:rgba(242,239,233,.4);
   --shadow:0 20px 60px -20px rgba(0,0,0,.55);
   --glass:rgba(17,16,19,.72);
   --y-text:#FFFF01;
@@ -222,6 +225,7 @@ section{position:relative;padding-block:clamp(2.8rem,5vw,4.5rem)}
   font-weight:600;transition:top var(--dur-micro);
 }
 .skip-link:focus-visible{top:1rem}
+main:focus{outline:none} /* цель ссылки «к содержанию» и кнопки «наверх» */
 
 /* ============ PAPER GRAIN OVERLAY ============ */
 #grain{
@@ -316,12 +320,13 @@ html[data-theme="dark"] #theme-toggle .ic-moon{display:none}
 #burger span{width:20px;height:2px;background:var(--ink);transition:.3s var(--ease)}
 #mobile-menu{
   position:fixed;inset:0;z-index:var(--z-menu);background:var(--bg);
-  display:grid;place-items:center;
+  display:grid;place-items:center;padding-top:var(--nav-h);
   clip-path:circle(0 at calc(100% - 3rem) 2rem);
-  transition:clip-path var(--dur-exit) var(--ease);visibility:hidden;
+  /* visibility гаснет в конце — иначе анимация закрытия не видна */
+  transition:clip-path var(--dur-exit) var(--ease),visibility 0s linear var(--dur-exit);visibility:hidden;
 }
 html[dir="rtl"] #mobile-menu{clip-path:circle(0 at 3rem 2rem)}
-#mobile-menu.open{clip-path:circle(150% at 50% 50%)!important;visibility:visible;transition-duration:var(--dur-enter)}
+#mobile-menu.open{clip-path:circle(150% at 50% 50%)!important;visibility:visible;transition:clip-path var(--dur-enter) var(--ease),visibility 0s}
 #mobile-menu ul{list-style:none;text-align:center;display:grid;gap:1.4rem}
 #mobile-menu a{font-size:1.7rem;font-weight:800;display:inline-block;padding:.3rem .8rem}
 body.menu-open #burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -719,7 +724,8 @@ html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
 .t-track .quote:hover{rotate:0deg}
 .quote p{color:var(--ink-soft);font-size:.95rem}
 .quote footer{display:flex;align-items:center;gap:.7rem}
-.avatar{
+/* .quote footer — иначе `.quote footer span` перебивает цвет и кегль буквы */
+.quote footer .avatar{
   width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
   font-weight:800;color:#fff;font-size:.95rem;flex:none;
 }
@@ -728,7 +734,8 @@ html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
 .quote[data-tone="y"] .avatar{background:var(--y);color:#141313}
 .quote footer b{display:block;font-size:.92rem}
 .quote footer span{font-size:.8rem;color:var(--ink-soft)}
-.stars{color:var(--y);letter-spacing:2px;font-size:.85rem;text-shadow:0 1px 0 rgba(0,0,0,.2)}
+/* жёлтый на белом 1.07:1 — контур цвета --y-text даёт звёздам читаемый край */
+.stars{color:var(--y);letter-spacing:2px;font-size:.85rem;text-shadow:0 1px 0 rgba(0,0,0,.2);-webkit-text-stroke:.6px var(--y-text)}
 
 /* ============ FAQ ============ */
 #faq{background:var(--bg-2);transition:background .5s}
@@ -743,6 +750,8 @@ html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
   padding:.7rem 1.1rem;font-weight:600;font-size:.95rem;min-height:48px;
 }
 .faq-item summary::-webkit-details-marker{display:none}
+/* кольцо фокуса внутрь: снаружи его срезает overflow:hidden у .faq-item */
+.faq-item summary:focus-visible{outline-offset:-3px}
 .faq-item summary .plus{
   width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);
   display:grid;place-items:center;flex:none;font-weight:500;
@@ -775,7 +784,7 @@ html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
 .field label .req{color:var(--err)}
 .field input,.field select{
   min-height:48px;padding:.6rem .9rem;border-radius:var(--r-sm);
-  border:1.5px solid var(--line);background:var(--bg);color:var(--ink);
+  border:1.5px solid var(--field-line);background:var(--bg);color:var(--ink);
   font:inherit;width:100%;transition:border-color var(--dur-micro);
 }
 .field input:focus-visible,.field select:focus-visible{outline:3px solid var(--m);outline-offset:1px;border-color:transparent}
@@ -811,7 +820,8 @@ a.ccard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .ccard .val{direction:ltr;unicode-bidi:embed}
 .ccard .val a{color:inherit;text-decoration:none;border-radius:3px}
 .ccard .val a:hover{color:var(--ink);text-decoration:underline}
-.tel-sep{font-style:normal;color:var(--line-2);margin:0 .5rem}
+.ccard .val a{white-space:nowrap} /* номер не рвётся посередине на 320px */
+.tel-sep{font-style:normal;margin:0 .5rem}
 .map-wrap{
   border-radius:var(--r-md);overflow:hidden;border:1px solid var(--card-line);
   position:relative;background:var(--card);
@@ -820,6 +830,7 @@ a.ccard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 /* интерактивная карта: z-index:0 замыкает слои Leaflet внутри блока,
    иначе его панели всплыли бы поверх закреплённой шапки */
 .osm-map{position:relative;height:320px;overflow:hidden;direction:ltr;background:#eef0ea;z-index:0}
+.osm-map:focus-visible{outline-offset:-4px} /* снаружи кольцо срезает .map-wrap */
 .leaflet-container{font:inherit;background:#eef0ea}
 html[data-theme="dark"] .leaflet-tile{filter:grayscale(.5) invert(.92) hue-rotate(180deg)}
 .map-pin{color:var(--m);filter:drop-shadow(0 3px 4px rgba(0,0,0,.35));animation:pinDrop .6s var(--ease-back) both}
@@ -887,8 +898,12 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
 /* nav needs its own, earlier breakpoint: RU labels are long and the bar
    runs out of slack below ~1020px while the rest of the layout still fits */
 @media (max-width:1020px){
-  .nav-links,.nav-cta{display:none}
+  .nav-main,.nav-cta{display:none}
   #burger{display:flex}
+}
+/* 2 колонки: пятая карточка («Ламинация») иначе стоит одна, рядом пустая клетка */
+@media (min-width:521px) and (max-width:920px){
+  .bento .card:nth-child(5){grid-column:span 2}
 }
 @media (max-width:920px){
   .bento{grid-template-columns:1fr 1fr}
@@ -918,9 +933,16 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
   .pcard-inner{opacity:1;animation:none;transform:rotate(var(--rot))}
   .marquee-track,.t-track{animation:none!important;flex-wrap:wrap;width:auto}
   .g-row{flex-wrap:wrap;width:auto}
+  .dup{display:none} /* копии для бесшовной ленты: без движения не нужны */
   .img-reveal::before{display:none}
   .img-reveal img{transform:none}
   .watermark{display:none}
+}
+/* ============ HIGH CONTRAST (Windows) ============ */
+@media (forced-colors:active){
+  .btn,.nav-cta,.icon-btn,#wa-float,#top-btn,.map-btn{border:2px solid ButtonText}
+  .about-badge b,.contact-title em{color:CanvasText;background:none}
+  .field select{background-image:none}
 }
 </style>
 <link rel="stylesheet" href="lib/leaflet.css">
@@ -928,7 +950,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
 </head>
 <body>
 
-<a class="skip-link" href="#services" data-i18n="skip">דלגו לתוכן</a>
+<a class="skip-link" href="#main" data-i18n="skip">דלגו לתוכן</a>
 
 <div id="grain" aria-hidden="true"></div>
 
@@ -949,7 +971,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
     <a class="logo" href="#hero">
       <span class="logo-mark"><img src="img/logo.png" data-i18n-alt="brand" alt="קופי פייסט" width="85" height="85" decoding="async"></span>
     </a>
-    <nav aria-label="Main">
+    <nav class="nav-main" data-i18n-aria="al_nav" aria-label="ניווט ראשי">
       <ul class="nav-links">
         <li><a href="#services" data-i18n="nav_services">שירותים</a></li>
         <li><a href="#gallery" data-i18n="nav_gallery">גלריה</a></li>
@@ -960,8 +982,8 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
       </ul>
     </nav>
     <div class="nav-actions">
-      <button class="icon-btn" id="lang-toggle" aria-label="Switch language">RU</button>
-      <button class="icon-btn" id="theme-toggle" aria-label="Toggle color theme">
+      <button class="icon-btn" id="lang-toggle" lang="ru" aria-label="RU — מעבר לרוסית">RU</button>
+      <button class="icon-btn" id="theme-toggle" data-i18n-aria="al_theme" aria-label="ערכת צבעים כהה" aria-pressed="false">
         <svg class="ic-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="ic-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
       </button>
@@ -969,13 +991,13 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span class="val" dir="ltr">(052) 756-90-70</span>
       </a>
-      <button id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button id="burger" data-i18n-aria="al_menu" aria-label="תפריט" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <!-- mobile menu -->
-<div id="mobile-menu">
+<nav id="mobile-menu" data-i18n-aria="al_nav" aria-label="ניווט ראשי">
   <ul>
     <li><a href="#services" data-i18n="nav_services">שירותים</a></li>
     <li><a href="#gallery" data-i18n="nav_gallery">גלריה</a></li>
@@ -985,9 +1007,9 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
     <li><a href="#contact" data-i18n="nav_contact">צור קשר</a></li>
     <li><a href="tel:+972527569070" class="val" dir="ltr">(052) 756-90-70</a></li>
   </ul>
-</div>
+</nav>
 
-<main>
+<main id="main" tabindex="-1">
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg" aria-hidden="true">
@@ -1169,12 +1191,12 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
           <div class="field" id="f-name">
             <label for="in-name"><span data-i18n="form_name">שם</span> <span class="req" aria-hidden="true">*</span></label>
             <input id="in-name" name="name" type="text" autocomplete="name" required>
-            <span class="err-msg" data-i18n="err_name" role="alert">נא למלא שם</span>
+            <span class="err-msg" id="err-name" data-i18n="err_name" role="alert">נא למלא שם</span>
           </div>
           <div class="field" id="f-phone">
             <label for="in-phone"><span data-i18n="form_phone">טלפון</span> <span class="req" aria-hidden="true">*</span></label>
             <input id="in-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required>
-            <span class="err-msg" data-i18n="err_phone" role="alert">נא למלא מספר טלפון תקין</span>
+            <span class="err-msg" id="err-phone" data-i18n="err_phone" role="alert">נא למלא מספר טלפון תקין</span>
           </div>
           <div class="field">
             <label for="in-product" data-i18n="form_product">מה להדפיס?</label>
@@ -1213,7 +1235,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
         </a>
       </div>
         <div class="map-wrap reveal" style="--d:.12s">
-          <div id="map" class="osm-map" role="region" aria-label="Карта: Copy Paste Haifa, International 5, Хайфа"></div>
+          <div id="map" class="osm-map" role="region" data-i18n-aria="al_map" aria-label="מפה: קופי פייסט, רחוב אינטרנשיונל 5, חיפה"></div>
           <div class="map-actions">
             <a class="map-btn" href="https://waze.com/ul?ll=32.7813482,35.0092643&navigate=yes" target="_blank" rel="noopener">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1247,7 +1269,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
 <a id="wa-float" href="https://wa.me/972527569070" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
 </a>
-<button id="top-btn" aria-label="Back to top">
+<button id="top-btn" data-i18n-aria="al_top" aria-label="חזרה למעלה">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
 </button>
 
@@ -1258,6 +1280,8 @@ const I18N = {
     _dir:"rtl", _lang:"he", _toggle:"RU",
     doc_title:"קופי פייסט — מרכז העתקות ודפוס בחיפה | Copy Paste Haifa",
     brand:"קופי פייסט", skip:"דלגו לתוכן",
+    al_lang:"מעבר לרוסית", al_theme:"ערכת צבעים כהה", al_menu:"תפריט", al_nav:"ניווט ראשי",
+    al_top:"חזרה למעלה", al_map:"מפה: קופי פייסט, רחוב אינטרנשיונל 5, חיפה", al_stars:"5 מתוך 5 כוכבים",
     nav_services:"שירותים", nav_gallery:"גלריה", nav_about:"עלינו", nav_process:"איך זה עובד", nav_faq:"שאלות", nav_contact:"צור קשר",
     hero_badge:"מרכז העתקות ודפוס · חיפה",
     hero_l1:"מדפיסים", hero_l2:"את הרעיונות", hero_l3:"שלכם.",
@@ -1333,6 +1357,8 @@ const I18N = {
     _dir:"ltr", _lang:"ru", _toggle:"EN",
     doc_title:"Copy Paste Haifa — копирование и печать в Хайфе",
     brand:"Copy Paste", skip:"К содержанию",
+    al_lang:"переключить на английский", al_theme:"Тёмная тема", al_menu:"Меню", al_nav:"Основная навигация",
+    al_top:"Наверх", al_map:"Карта: Copy Paste Haifa, ул. Интернешнл 5, Хайфа", al_stars:"5 из 5 звёзд",
     nav_services:"Услуги", nav_gallery:"Галерея", nav_about:"О нас", nav_process:"Как это работает", nav_faq:"Вопросы", nav_contact:"Контакты",
     hero_badge:"Центр копирования и печати · Хайфа",
     hero_l1:"Печатаем", hero_l2:"ваши", hero_l3:"идеи.",
@@ -1408,6 +1434,8 @@ const I18N = {
     _dir:"ltr", _lang:"en", _toggle:"עב",
     doc_title:"Copy Paste Haifa — copy & print center in Haifa",
     brand:"Copy Paste", skip:"Skip to content",
+    al_lang:"switch to Hebrew", al_theme:"Dark theme", al_menu:"Menu", al_nav:"Main",
+    al_top:"Back to top", al_map:"Map: Copy Paste Haifa, 5 International St, Haifa", al_stars:"5 out of 5 stars",
     nav_services:"Services", nav_gallery:"Gallery", nav_about:"About", nav_process:"How it works", nav_faq:"FAQ", nav_contact:"Contact",
     hero_badge:"Copy & print center · Haifa",
     hero_l1:"We print", hero_l2:"your", hero_l3:"ideas.",
@@ -1533,19 +1561,27 @@ $("#services-grid").innerHTML = SERVICES.map(([k,accent,span,feat,photo,icon],i)
     <a class="btn btn-primary magnetic" href="https://wa.me/972527569070" target="_blank" rel="noopener"><span data-i18n="srv_cta_b"></span></a>
   </div>`;
 
-/* build gallery rows: two identical halves, each ≥ one viewport wide, so the
-   JS wrap at half-width lands on an identical frame (no loading="lazy" here:
-   transform-based marquee keeps layout position off-screen and lazy never fires) */
-function fillGalleryRow(track, items){
-  const setHTML = items.map(([src,cap])=>`
-    <figure class="g-item">
-      <img src="${src}" alt="" decoding="async" width="300" height="210">
-      <figcaption data-i18n="${cap}"></figcaption>
-    </figure>`).join("");
+/* seamless loop = exactly TWO identical halves, each at least one viewport
+   wide (the -50% keyframe / half-width wrap then lands on an identical frame —
+   no visible jump). Copies are hidden from screen readers; with reduced motion
+   the track doesn't move, so there are no copies at all */
+function fillLoop(track, setHTML){
   track.innerHTML = setHTML;
+  if(reduced) return;
+  const n = track.children.length;
   const setW = track.scrollWidth || 1;
   const sets = Math.max(1, Math.ceil(innerWidth / setW));
   track.innerHTML = Array(sets * 2).fill(setHTML).join("");
+  [...track.children].slice(n).forEach(el=>{ el.classList.add("dup"); el.setAttribute("aria-hidden","true"); });
+}
+/* gallery rows (no loading="lazy" here: transform-based marquee keeps layout
+   position off-screen and lazy never fires) */
+function fillGalleryRow(track, items){
+  fillLoop(track, items.map(([src,cap])=>`
+    <figure class="g-item">
+      <img src="${src}" alt="" decoding="async" width="300" height="210">
+      <figcaption data-i18n="${cap}"></figcaption>
+    </figure>`).join(""));
 }
 fillGalleryRow($("#g-row-1"), GALLERY_TOP);
 fillGalleryRow($("#g-row-2"), GALLERY_BOTTOM);
@@ -1553,6 +1589,8 @@ fillGalleryRow($("#g-row-2"), GALLERY_BOTTOM);
 /* char-split hero title (Complex tier: rotateX + 15ms stagger) */
 function splitHero(){
   if(reduced) return;
+  /* заголовок целиком — иначе скринридер читает его по буквам */
+  $("#hero-title").setAttribute("aria-label", $$("#hero-title .w").map(w=>w.textContent).join(" "));
   $$("#hero-title .w").forEach(w=>{
     const text = w.textContent;
     let ci = 0;
@@ -1571,6 +1609,7 @@ const store = {
   get(k){ try { return localStorage.getItem(k) } catch(e){ return null } },
   set(k,v){ try { localStorage.setItem(k,v) } catch(e){} }
 };
+const LANGS = ["he","ru","en"];
 let lang = store.get("cp-lang") || "he";
 function applyLang(l){
   const d = I18N[l];
@@ -1584,15 +1623,16 @@ function applyLang(l){
     const v = d[el.dataset.i18nAlt];
     if(v!==undefined) el.alt = v;
   });
-  $("#lang-toggle").textContent = d._toggle;
-  /* seamless loop = exactly TWO identical halves, each at least one viewport
-     wide (the -50% keyframe then lands on an identical frame — no visible jump) */
-  const fillLoop = (track, setHTML) => {
-    track.innerHTML = setHTML;
-    const setW = track.scrollWidth || 1;
-    const sets = Math.max(1, Math.ceil(innerWidth / setW));
-    track.innerHTML = Array(sets * 2).fill(setHTML).join("");
-  };
+  $$("[data-i18n-aria]").forEach(el=>{
+    const v = d[el.dataset.i18nAria];
+    if(v!==undefined) el.setAttribute("aria-label", v);
+  });
+  /* имя кнопки начинается с видимого текста (RU/EN/עב) — голосовое управление
+     находит её по тому, что написано; lang — язык этой надписи */
+  const lt = $("#lang-toggle");
+  lt.textContent = d._toggle;
+  lt.lang = LANGS[(LANGS.indexOf(l)+1)%LANGS.length];
+  lt.setAttribute("aria-label", `${d._toggle} — ${d.al_lang}`);
   fillLoop($("#marquee-track"), d.marquee.map(m=>`<span><i></i>${m}</span>`).join(""));
   $("#in-product").innerHTML =
     d.marquee.map(m=>`<option>${m}</option>`).join("") + `<option>${d.form_other}</option>`;
@@ -1601,7 +1641,7 @@ function applyLang(l){
       <span class="qmark" aria-hidden="true">”</span>
       <blockquote><p>${t.t}</p></blockquote>
       <footer><span class="avatar" aria-hidden="true">${t.n[0]}</span><div><b>${t.n}</b><span>${t.r}</span></div></footer>
-      <span class="stars" aria-label="5/5">★★★★★</span>
+      <span class="stars" role="img" aria-label="${d.al_stars}">★★★★★</span>
     </figure>`;
   fillLoop($("#t-track"), d.ts.map(q).join(""));
   document.title = d.doc_title;
@@ -1609,7 +1649,6 @@ function applyLang(l){
   splitHero();
 }
 applyLang(lang);
-const LANGS = ["he","ru","en"];
 $("#lang-toggle").addEventListener("click",()=>{
   lang = LANGS[(LANGS.indexOf(lang)+1)%LANGS.length];
   applyLang(lang);
@@ -1620,6 +1659,7 @@ let theme = store.get("cp-theme") ||
   (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 function applyTheme(t){
   document.documentElement.dataset.theme = t;
+  $("#theme-toggle").setAttribute("aria-pressed", t==="dark");
   store.set("cp-theme", t);
 }
 applyTheme(theme);
@@ -1676,7 +1716,11 @@ function onScroll(){
   });
 }
 addEventListener("scroll", onScroll, {passive:true}); onScroll();
-topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:reduced?"auto":"smooth"}));
+/* фокус — в начало страницы: сама кнопка исчезает, и фокус иначе теряется */
+topBtn.addEventListener("click",()=>{
+  $("#main").focus({preventScroll:true});
+  scrollTo({top:0,behavior:reduced?"auto":"smooth"});
+});
 
 /* gallery rows: rAF marquee, speed reacts to scroll velocity */
 if(!reduced){
@@ -1739,33 +1783,51 @@ if(!reduced) document.addEventListener("pointerdown",e=>{
   setTimeout(()=>ink.remove(), 650);
 });
 
-/* mobile menu */
+/* mobile menu: шапка с крестиком лежит поверх меню; закрывают крестик,
+   пункт меню, Escape и переход на широкий экран (там бургера нет).
+   Пока меню открыто, страница под ним недоступна (inert) */
 const burger = $("#burger"), mm = $("#mobile-menu");
-burger.addEventListener("click",()=>{
-  const open = mm.classList.toggle("open");
+const behindMenu = $$("main, footer.site, #wa-float, #top-btn");
+function setMenu(open, refocus){
+  mm.classList.toggle("open", open);
   document.body.classList.toggle("menu-open", open);
   burger.setAttribute("aria-expanded", open);
+  behindMenu.forEach(el=>{ el.inert = open; });
+  if(!open && refocus) burger.focus();
+}
+burger.addEventListener("click",()=>setMenu(!mm.classList.contains("open")));
+mm.addEventListener("click",e=>{ if(e.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape" && mm.classList.contains("open")) setMenu(false, true);
 });
-mm.addEventListener("click",e=>{
-  if(e.target.closest("a")){
-    mm.classList.remove("open"); document.body.classList.remove("menu-open");
-    burger.setAttribute("aria-expanded","false");
-  }
-});
+addEventListener("resize",()=>{
+  if(innerWidth > 1020 && mm.classList.contains("open")) setMenu(false);
+},{passive:true});
 
 /* lead form → prefilled WhatsApp */
 const form = $("#lead-form"), fName = $("#f-name"), fPhone = $("#f-phone");
 const inName = $("#in-name"), inPhone = $("#in-phone");
 const phoneOk = v => /^[+\d][\d\s-]{7,15}$/.test(v.trim());
+/* ошибка связана с полем: скринридер читает причину вместе с полем */
+function setInvalid(field, input, bad){
+  field.classList.toggle("invalid", bad);
+  if(bad){
+    input.setAttribute("aria-invalid","true");
+    input.setAttribute("aria-describedby", field.querySelector(".err-msg").id);
+  } else {
+    input.removeAttribute("aria-invalid");
+    input.removeAttribute("aria-describedby");
+  }
+}
 function validate(field, input, test){
   const ok = test(input.value);
-  field.classList.toggle("invalid", !ok);
+  setInvalid(field, input, !ok);
   return ok;
 }
 inName.addEventListener("blur",()=>{ if(inName.value) validate(fName,inName,v=>v.trim().length>=2); });
 inPhone.addEventListener("blur",()=>{ if(inPhone.value) validate(fPhone,inPhone,phoneOk); });
-inName.addEventListener("input",()=>fName.classList.remove("invalid"));
-inPhone.addEventListener("input",()=>fPhone.classList.remove("invalid"));
+inName.addEventListener("input",()=>setInvalid(fName,inName,false));
+inPhone.addEventListener("input",()=>setInvalid(fPhone,inPhone,false));
 form.addEventListener("submit",e=>{
   e.preventDefault();
   const okN = validate(fName,inName,v=>v.trim().length>=2);
