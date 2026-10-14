@@ -829,7 +829,6 @@ a.ccard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
   border-radius:var(--r-md);overflow:hidden;border:1px solid var(--card-line);
   position:relative;background:var(--card);
 }
-/* local OpenStreetMap: 3×3 tiles shipped with the site — renders everywhere, no external requests */
 /* интерактивная карта: z-index:0 замыкает слои Leaflet внутри блока,
    иначе его панели всплыли бы поверх закреплённой шапки */
 .osm-map{position:relative;height:320px;overflow:hidden;direction:ltr;background:#eef0ea;z-index:0}
@@ -948,8 +947,6 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
   .field select{background-image:none}
 }
 </style>
-<link rel="stylesheet" href="lib/leaflet.css">
-<script src="lib/leaflet.js" defer></script>
 <!-- без JS: без заставки, все блоки видны сразу -->
 <noscript><style>#loader{display:none}.reveal{opacity:1;transform:none}.img-reveal::before{display:none}.img-reveal img{transform:none}</style></noscript>
 </head>
@@ -1894,31 +1891,42 @@ if(matchMedia("(pointer:fine)").matches && !reduced){
     hero.addEventListener("mouseleave",()=>cards.forEach(c=>c.style.transform=""));
   }
 }
-/* ===== интерактивная карта (Leaflet, библиотека лежит в lib/) ===== */
-document.addEventListener("DOMContentLoaded",()=>{
-  const el = document.getElementById("map");
-  if(!el || typeof L === "undefined") return;      // библиотека не загрузилась — блок просто пустой
-  const POS = [32.7813482, 35.0092643];
-  let built = false;
-  const build = () => {
-    if(built) return; built = true;
-    const map = L.map(el,{scrollWheelZoom:false, zoomControl:true}).setView(POS,17);
+/* ===== интерактивная карта (Leaflet, библиотека лежит в lib/) =====
+   Библиотеку (47 КБ) и тайлы грузим, лишь когда посетитель дошёл до карты.
+   Стили Leaflet встают ПЕРЕД нашими — иначе перебивают шрифт и фон карты.
+   Не загрузилось или упало — блок карты прячем, остаются кнопки Waze и Google Maps */
+const mapEl = $("#map");
+function hideMap(){ mapEl.hidden = true; }
+function buildMap(){
+  try {
+    const POS = [32.7813482, 35.0092643];
+    /* на телефоне одним пальцем листается страница, а не карта (она почти в полэкрана);
+       колесо мыши — только после клика, иначе страница не прокручивалась бы над картой */
+    const map = L.map(mapEl,{scrollWheelZoom:false, dragging:!L.Browser.mobile}).setView(POS,17);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{
-      maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>'
+      maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors'
     }).addTo(map);
-    L.marker(POS,{title:"Copy Paste Haifa", icon:L.divIcon({
+    /* keyboard:false — метка ничего не делает, пустая остановка Tab не нужна */
+    L.marker(POS,{title:"Copy Paste Haifa", keyboard:false, icon:L.divIcon({
       className:"map-pin", iconSize:[32,32], iconAnchor:[16,32],
       html:'<svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" stroke="#fff" stroke-width="1"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3" fill="#fff" stroke="none"/></svg>'
     })}).addTo(map);
-    /* колесо мыши перехватываем только после клика по карте — иначе страница
-       перестала бы прокручиваться, когда курсор проходит над картой */
     map.once("click",()=>map.scrollWheelZoom.enable());
-  };
-  /* тайлы грузим лишь когда посетитель дошёл до карты */
-  if("IntersectionObserver" in window)
-    new IntersectionObserver((e,o)=>{ if(e[0].isIntersecting){ build(); o.disconnect(); } },{rootMargin:"300px"}).observe(el);
-  else build();
-});
+  } catch(e){ hideMap(); }
+}
+function loadMap(){
+  let pending = 2;
+  const ready = () => { if(--pending === 0) buildMap(); };
+  const css = document.createElement("link");
+  css.rel = "stylesheet"; css.href = "lib/leaflet.css";
+  css.onload = ready; css.onerror = hideMap;
+  document.head.insertBefore(css, document.querySelector("style"));
+  const js = document.createElement("script");
+  js.src = "lib/leaflet.js";
+  js.onload = ready; js.onerror = hideMap;
+  document.head.appendChild(js);
+}
+whenVisible([mapEl], {rootMargin:"300px"}, loadMap);
 
 </script>
 </body>
