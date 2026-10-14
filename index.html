@@ -163,12 +163,12 @@
 <meta name="theme-color" content="#F7F5F0">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ============ DESIGN TOKENS ============ */
 :root{
   /* brand — CMYK (print industry palette) */
-  --c:#00AEEF; --m:#EC008C; --y:#FFFF01; --k:#141313;
+  --c:#00AEEF; --m:#EC008C; --y:#FFFF01;
   --y-text:#707000;
   /* semantic — paper theme */
   --bg:#F7F5F0; --bg-2:#FFFFFF; --ink:#161514; --ink-soft:#54514C;
@@ -178,7 +178,7 @@
   --glass:rgba(247,245,240,.72);
   --wa:#1DA851; --wa-strong:#128C43;
   --err:#C81E1E;
-  --r-lg:24px; --r-md:16px; --r-sm:10px; --r-pill:999px;
+  --r-md:16px; --r-sm:10px; --r-pill:999px;
   --fs-display:clamp(2.4rem,6.5vw,5rem);
   --fs-h2:clamp(1.7rem,3.8vw,2.7rem);
   /* motion (slightly relaxed: enter 650ms, micro 300ms, exit ~65%) */
@@ -210,7 +210,7 @@ body{
   overflow-x:hidden;
   transition:background .5s,color .5s;
 }
-img,svg,iframe{display:block;max-width:100%}
+img,svg{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 a,button,summary,input,select{touch-action:manipulation}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -268,8 +268,6 @@ html[data-theme="dark"] #grain{mix-blend-mode:screen;opacity:.05}
   background:linear-gradient(90deg,var(--c),var(--m),var(--y));
 }
 
-/* ============ CUSTOM CURSOR ============ */
-
 /* ============ NAV ============ */
 #nav{
   position:fixed;top:0;inset-inline:0;z-index:var(--z-nav);
@@ -285,7 +283,7 @@ html[data-theme="dark"] #grain{mix-blend-mode:screen;opacity:.05}
   display:flex;align-items:center;justify-content:space-between;gap:1rem;
   padding-block:.7rem;
 }
-.logo{display:flex;align-items:center;gap:.55rem;font-weight:900;font-size:1.25rem;z-index:2;min-height:44px}
+.logo{display:flex;align-items:center;z-index:2;min-height:44px}
 .logo-mark{position:relative;width:85px;height:85px;flex:none}
 .logo-mark img{width:100%;height:100%;display:block;transition:transform var(--dur-micro) var(--ease)}
 .logo:hover .logo-mark img{transform:rotate(-8deg) scale(1.06)}
@@ -466,13 +464,6 @@ html[data-theme="dark"] .blob{mix-blend-mode:screen;opacity:.32}
 .pcard-2 .pcard-inner::after{background:var(--c)}
 .pcard-3{width:300px;height:215px;bottom:0;inset-inline-start:120px;--rot:-2deg;--d1:.8s;--fdur:9.4s;z-index:4}
 .pcard-3 .pcard-inner::after{background:var(--y)}
-.scroll-hint{
-  position:absolute;bottom:1.6rem;inset-inline-start:50%;translate:-50% 0;
-  display:grid;justify-items:center;gap:.4rem;font-size:.75rem;color:var(--ink-soft);
-  animation:hint 2s infinite ease-in-out;
-}
-html[dir="rtl"] .scroll-hint{translate:50% 0}
-@keyframes hint{0%,100%{transform:translateY(0);opacity:.7}50%{transform:translateY(8px);opacity:1}}
 
 /* ============ SERVICES MARQUEE ============ */
 .marquee{
@@ -510,7 +501,6 @@ html[dir="rtl"] .marquee-track{animation-name:scrollx-rtl}
   0%{text-shadow:5px 0 var(--c),-5px 3px var(--m),2px -4px var(--y)}
   100%{text-shadow:0 0 transparent,0 0 transparent,0 0 transparent}
 }
-.sec-sub{color:var(--ink-soft);max-width:560px;font-size:.98rem}
 
 /* ============ IMAGE REVEAL (press-output wipe) ============ */
 .img-reveal{overflow:hidden;position:relative}
@@ -521,9 +511,9 @@ html[dir="rtl"] .marquee-track{animation-name:scrollx-rtl}
   transition:transform .7s var(--ease);
 }
 html[dir="rtl"] .img-reveal::before{--wipe-origin:right}
-.reveal.in .img-reveal::before,.img-reveal.in::before{transform:scaleX(0);transform-origin:var(--wipe-end,right)}
-html[dir="rtl"] .reveal.in .img-reveal::before,html[dir="rtl"] .img-reveal.in::before{--wipe-end:left}
-.reveal.in .img-reveal img,.img-reveal.in img{transform:scale(1)}
+.reveal.in .img-reveal::before{transform:scaleX(0);transform-origin:var(--wipe-end,right)}
+html[dir="rtl"] .reveal.in .img-reveal::before{--wipe-end:left}
+.reveal.in .img-reveal img{transform:scale(1)}
 
 /* ============ SERVICES — BENTO ============ */
 .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:1rem}
@@ -551,7 +541,6 @@ html[dir="rtl"] .reveal.in .img-reveal::before,html[dir="rtl"] .img-reveal.in::b
   transition:transform var(--dur-micro) var(--ease);
 }
 .card:hover .card-icon{transform:rotate(-6deg) scale(1.08)}
-.card h3{font-size:1.05rem}
 .card p{font-size:.9rem;color:var(--ink-soft);line-height:1.5}
 /* plain cards = airy one-line chips: icon + title */
 .card:not(.featured){flex-direction:row;display:flex;align-items:center;gap:.8rem;padding:1rem 1.2rem}
@@ -575,20 +564,13 @@ html[dir="rtl"] .reveal.in .img-reveal::before,html[dir="rtl"] .img-reveal.in::b
   transition:transform .45s var(--ease-back);
 }
 .card.featured:hover .bg-ic{transform:rotate(-10deg) scale(1.12)}
-.card-photo{
-  border-radius:calc(var(--r-md) - 4px);height:150px;margin-bottom:.85rem;
-}
-.card-photo img{width:100%;height:100%;object-fit:cover}
-.card:hover .card-photo img{transform:scale(1.06)}
 .bento-cta{
   grid-column:1/-1;
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
   background:var(--ink);color:var(--bg);border-radius:var(--r-md);
   padding:1rem 1.4rem;
 }
-@media (max-width:920px){.bento-cta{grid-column:1/-1}}
 .bento-cta h3{font-size:1.3rem;margin-bottom:.2rem}
-.bento-cta p{color:color-mix(in srgb,var(--bg) 70%,transparent);font-size:.95rem}
 
 /* ============ GALLERY — dual photo marquee + watermark ============ */
 #gallery{overflow:hidden;background:var(--bg-2);transition:background .5s}
@@ -696,7 +678,6 @@ html[dir="rtl"] .g-item figcaption{direction:rtl}
 .step:nth-child(3) .step-num{box-shadow:5px 5px 0 var(--y)}
 .step:nth-child(4) .step-num{box-shadow:5px 5px 0 var(--ink-soft)}
 .step h3{font-size:1.1rem}
-.step p{font-size:.88rem;color:var(--ink-soft)}
 
 /* ============ TESTIMONIALS ============ */
 #testimonials{overflow:hidden}
@@ -775,7 +756,6 @@ html[dir="rtl"] .t-track{animation-name:scrollx-rtl}
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .contact-left{display:grid;gap:1.3rem}
-.contact-left>p{color:var(--ink-soft);font-size:1.05rem;max-width:52ch}
 .lead-form{
   display:grid;gap:.9rem;
   background:var(--card);border:1px solid var(--card-line);border-radius:var(--r-md);
@@ -817,14 +797,15 @@ a.ccard:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
 .ccard[data-tone="c"] .ic{background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--c)}
 .ccard[data-tone="m"] .ic{background:color-mix(in srgb,var(--m) 15%,transparent);color:var(--m)}
 .ccard[data-tone="y"] .ic{background:color-mix(in srgb,var(--y) 25%,transparent);color:var(--y-text)}
-.ccard[data-tone="k"] .ic{background:var(--line);color:var(--ink)}
 .ccard b{display:block;font-size:1rem}
 .ccard span{font-size:.85rem;color:var(--ink-soft)}
 .ccard .val{direction:ltr;unicode-bidi:embed}
 .ccard .val a{color:inherit;text-decoration:none;border-radius:3px}
 .ccard .val a:hover{color:var(--ink);text-decoration:underline}
-.ccard .val a{white-space:nowrap} /* номер не рвётся посередине на 320px */
+.ccard .val a{white-space:nowrap} /* номер не рвётся посередине */
 .tel-sep{font-style:normal;margin:0 .5rem}
+/* два номера в строку не влезают — каждый на своей строке, без разделителя */
+@media (max-width:359px){.ccard .val a{display:block}.tel-sep{display:none}}
 .map-wrap{
   border-radius:var(--r-md);overflow:hidden;border:1px solid var(--card-line);
   position:relative;background:var(--card);
@@ -991,7 +972,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
       </button>
       <a class="nav-cta" href="tel:+972527569070">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span class="val" dir="ltr">(052) 756-90-70</span>
+        <span dir="ltr">(052) 756-90-70</span>
       </a>
       <button id="burger" data-i18n-aria="al_menu" aria-label="תפריט" aria-controls="mobile-menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
@@ -1007,7 +988,7 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
     <li><a href="#process" data-i18n="nav_process">איך זה עובד</a></li>
     <li><a href="#faq" data-i18n="nav_faq">שאלות</a></li>
     <li><a href="#contact" data-i18n="nav_contact">צור קשר</a></li>
-    <li><a href="tel:+972527569070" class="val" dir="ltr">(052) 756-90-70</a></li>
+    <li><a href="tel:+972527569070" dir="ltr">(052) 756-90-70</a></li>
   </ul>
 </nav>
 
@@ -1290,23 +1271,20 @@ const I18N = {
     hero_sub:"העתקות, הדפסות ופתרונות דפוס — מהיר, מדויק ונוח. בחיפה, במיוחד לסטודנטים, מורים ועסקים.",
     cta_call:"התקשרו עכשיו", cta_wa:"שלחו וואטסאפ",
     stat1:"לקוחות מרוצים", stat2:"שירותי דפוס", stat3:"ממליצים עלינו",
-    scroll:"גללו למטה",
     marquee:["הדפסת מסמכים","צילום","מדבקות","כרטיסי ביקור","פורמט רחב","פוסטרים","חוברות","כריכה","סריקה","למינציה"],
     srv_label:"השירותים שלנו", srv_title:"כל ההעתקות והדפוס במקום אחד",
-    srv_sub:"מהעתקה מהירה ועד פרויקט גדול — כל מה שצריך להדפיס, במחיר טוב ובזמן.",
     s1t:"הדפסת מסמכים", s1d:"שחור-לבן וצבע, כל הכמויות — מעמוד בודד ועד תזה שלמה.",
     s2t:"כרטיסי ביקור", s2d:"עם למינציה או בלי — רושם ראשוני מנצח.",
-    s3t:"העתקות וצילום", s3d:"",
-    s4t:"מדבקות", s4d:"",
+    s3t:"העתקות וצילום",
+    s4t:"מדבקות",
     s5t:"פורמט רחב", s5d:"פוסטרים, באנרים ושלטים בכל גודל.",
-    s6t:"למינציה", s6d:"",
+    s6t:"למינציה",
     s7t:"פוסטרים ושלטים", s7d:"צבעים חדים שנתפסים לעין.",
     s8t:"חוברות וקטלוגים", s8d:"חוברות, קטלוגים ותיקי עבודות בכריכה מקצועית.",
-    s9t:"כריכה ותיוק", s9d:"",
-    s10t:"לוחות שנה", s10d:"",
-    srv_cta_t:"לא מצאתם את מה שחיפשתם?", srv_cta_d:"דברו איתנו — מדפיסים כמעט הכל.", srv_cta_b:"לשיחה בוואטסאפ",
+    s9t:"כריכה ותיוק",
+    s10t:"לוחות שנה",
+    srv_cta_t:"לא מצאתם את מה שחיפשתם?", srv_cta_b:"לשיחה בוואטסאפ",
     wm:"העתקה · דפוס ·", gl_label:"מהעולם שלנו", gl_title:"צבע. נייר. דיו.",
-    gl_sub:"העבירו עכבר על תמונה — ותראו איך העולם שלנו מקבל צבע.",
     g8:"הדפסה בפעולה",
     c_fly:"הדפסות", c_box:"אריזות", c_st:"מדבקות", c_env:"מעטפות",
     c_cal:"לוחות שנה", c_menu:"תפריטים", c_mix:"מוצרי דפוס", c_br:"חוברות",
@@ -1314,15 +1292,15 @@ const I18N = {
     about_card_big:"הנחות", about_card_cap:"לסטודנטים ולמורים",
     alt_about:"מעצב גרפי מכין קובץ לדפוס — טאבלט, סקיצות ומניפת פנטון",
     about_p1:"קופי פייסט הוא מרכז העתקות ודפוס בחיפה — שירות מהיר, מדויק ונוח לסטודנטים, מורים, בעלי מקצוע ועסקים. ציוד דיגיטלי, מחירים הוגנים ויחס אישי.",
-    f1_t:"ציוד דיגיטלי", f1_d:"מדפסות ומכונות צילום מהירות לאיכות מושלמת",
-    f2_t:"צוות אדיב", f2_d:"עוזרים בכל שלב — מהקובץ ועד המוצר המוגמר",
-    f3_t:"הנחה מיוחדת", f3_d:"לסטודנטים ולמורים — ומחירים הוגנים לכולם",
-    f4_t:"מהיר ובמקום", f4_d:"רוב העבודות מוכנות במקום או תוך זמן קצר",
+    f1_t:"ציוד דיגיטלי",
+    f2_t:"צוות אדיב",
+    f3_t:"הנחה מיוחדת",
+    f4_t:"מהיר ובמקום",
     pr_label:"איך זה עובד", pr_title:"מקובץ להדפסה בארבעה צעדים",
-    pr1_t:"שולחים קובץ", pr1_d:"מגיעים לחנות או שולחים בוואטסאפ / מייל",
-    pr2_t:"בוחרים ומאשרים", pr2_d:"נייר, גודל וכמות — ונעזור גם בעיצוב אם צריך",
-    pr3_t:"מדפיסים", pr3_d:"מדפיסים בציוד דיגיטלי מהיר ובאיכות גבוהה",
-    pr4_t:"מוכן!", pr4_d:"אוספים במקום — לרוב עוד באותו יום",
+    pr1_t:"שולחים קובץ",
+    pr2_t:"בוחרים ומאשרים",
+    pr3_t:"מדפיסים",
+    pr4_t:"מוכן!",
     ts_label:"ממליצים עלינו", ts_title:"לקוחות אמיתיים, מילים אמיתיות",
     ts:[
       {t:"תודה על שירות מקצועי, סבלני ואדיב ועל עיצוב מושלם. ממשיכים לעבוד אתכם!",n:"אריאלה הרשקוביץ",r:"אתנחתא — מרחב טיפול",tone:"c"},
@@ -1341,7 +1319,6 @@ const I18N = {
     faq3_q:"יש הנחות?", faq3_a:"כן — הנחה מיוחדת לסטודנטים ולמורים בהצגת תעודה.",
     faq4_q:"אתם עוזרים גם בעיצוב?", faq4_a:"בהחלט — יש לנו גרפיקאית שתכין לכם קובץ מוכן לדפוס.",
     ct_label:"צור קשר", ct_t1:"בואו נדפיס", ct_t2:"משהו ביחד",
-    ct_sub:"כתבו או התקשרו — נחזור אליכם מהר עם מחיר טוב.",
     form_title:"השאירו פרטים — נחזור אליכם",
     form_name:"שם", form_phone:"טלפון", form_product:"מה להדפיס?",
     form_other:"אחר / עוד לא יודעים",
@@ -1367,23 +1344,20 @@ const I18N = {
     hero_sub:"Копирование, печать и полиграфия — быстро, точно и удобно. В Хайфе, особенно для студентов, преподавателей и бизнеса.",
     cta_call:"Позвонить сейчас", cta_wa:"Написать в WhatsApp",
     stat1:"довольных клиентов", stat2:"услуг печати", stat3:"рекомендуют нас",
-    scroll:"листайте вниз",
     marquee:["Печать документов","Копирование","Наклейки","Визитки","Широкоформат","Постеры","Брошюры","Переплёт","Сканирование","Ламинация"],
     srv_label:"Наши услуги", srv_title:"Всё копирование и печать в одном месте",
-    srv_sub:"От быстрой копии до большого проекта — всё, что нужно напечатать, по хорошей цене и в срок.",
     s1t:"Печать документов", s1d:"Ч/б и цвет, любой тираж — от одной страницы до целого диплома.",
     s2t:"Визитки", s2d:"С ламинацией или без — выигрышное первое впечатление.",
-    s3t:"Копирование", s3d:"",
-    s4t:"Наклейки", s4d:"",
+    s3t:"Копирование",
+    s4t:"Наклейки",
     s5t:"Широкоформат", s5d:"Постеры, баннеры и вывески любого размера.",
-    s6t:"Ламинация", s6d:"",
+    s6t:"Ламинация",
     s7t:"Постеры и вывески", s7d:"Яркие цвета, которые цепляют взгляд.",
     s8t:"Брошюры и каталоги", s8d:"Брошюры, каталоги и портфолио с профессиональным переплётом.",
-    s9t:"Переплёт и папки", s9d:"",
-    s10t:"Календари", s10d:"",
-    srv_cta_t:"Не нашли, что искали?", srv_cta_d:"Напишите нам — печатаем почти всё.", srv_cta_b:"Написать в WhatsApp",
+    s9t:"Переплёт и папки",
+    s10t:"Календари",
+    srv_cta_t:"Не нашли, что искали?", srv_cta_b:"Написать в WhatsApp",
     wm:"КОПИЯ · ПЕЧАТЬ ·", gl_label:"Из нашего мира", gl_title:"Цвет. Бумага. Краска.",
-    gl_sub:"Наведите курсор на фото — и увидите, как наш мир обретает цвет.",
     g8:"Печать в деле",
     c_fly:"Печать", c_box:"Упаковка", c_st:"Наклейки", c_env:"Конверты",
     c_cal:"Календари", c_menu:"Меню", c_mix:"Полиграфия", c_br:"Брошюры",
@@ -1391,15 +1365,15 @@ const I18N = {
     about_card_big:"Скидки", about_card_cap:"студентам и преподавателям",
     alt_about:"Графический дизайнер готовит макет к печати: планшет, скетчи и веер Pantone",
     about_p1:"Copy Paste — центр копирования и печати в Хайфе: быстрый, точный и удобный сервис для студентов, преподавателей, специалистов и бизнеса. Цифровое оборудование, честные цены и личное отношение.",
-    f1_t:"Цифровое оборудование", f1_d:"Быстрые принтеры и копиры для идеального качества",
-    f2_t:"Дружелюбная команда", f2_d:"Помогаем на каждом шаге — от файла до готового продукта",
-    f3_t:"Особая скидка", f3_d:"Студентам и преподавателям — и честные цены для всех",
-    f4_t:"Быстро и на месте", f4_d:"Большинство заказов готовы на месте или очень быстро",
+    f1_t:"Цифровое оборудование",
+    f2_t:"Дружелюбная команда",
+    f3_t:"Особая скидка",
+    f4_t:"Быстро и на месте",
     pr_label:"Как это работает", pr_title:"От файла до печати за четыре шага",
-    pr1_t:"Присылаете файл", pr1_d:"Приходите в магазин или присылаете в WhatsApp / на почту",
-    pr2_t:"Выбираете и подтверждаете", pr2_d:"Бумага, размер и тираж — поможем и с дизайном, если нужно",
-    pr3_t:"Печатаем", pr3_d:"Печатаем на быстром цифровом оборудовании в высоком качестве",
-    pr4_t:"Готово!", pr4_d:"Забираете на месте — чаще всего в тот же день",
+    pr1_t:"Присылаете файл",
+    pr2_t:"Выбираете и подтверждаете",
+    pr3_t:"Печатаем",
+    pr4_t:"Готово!",
     ts_label:"Отзывы", ts_title:"Настоящие клиенты, настоящие слова",
     ts:[
       {t:"Спасибо за профессиональный, терпеливый и любезный сервис и безупречный дизайн. Продолжаем работать с вами!",n:"Ариэла Гершкович",r:"Центр «Атнахта»",tone:"c"},
@@ -1418,7 +1392,6 @@ const I18N = {
     faq3_q:"Есть скидки?", faq3_a:"Да — особая скидка для студентов и преподавателей по удостоверению.",
     faq4_q:"Вы помогаете с дизайном?", faq4_a:"Конечно — у нас есть график, который подготовит файл к печати.",
     ct_label:"Контакты", ct_t1:"Давайте напечатаем", ct_t2:"что-то вместе",
-    ct_sub:"Напишите или позвоните — быстро ответим с хорошей ценой.",
     form_title:"Оставьте заявку — мы ответим",
     form_name:"Имя", form_phone:"Телефон", form_product:"Что печатаем?",
     form_other:"Другое / ещё не знаю",
@@ -1444,23 +1417,20 @@ const I18N = {
     hero_sub:"Copying, printing and print solutions — fast, accurate and convenient. In Haifa, made for students, teachers and businesses.",
     cta_call:"Call now", cta_wa:"Message on WhatsApp",
     stat1:"happy customers", stat2:"print services", stat3:"recommend us",
-    scroll:"scroll down",
     marquee:["Document printing","Copying","Stickers","Business cards","Wide-format","Posters","Booklets","Binding","Scanning","Lamination"],
     srv_label:"Our services", srv_title:"All your copy & print in one place",
-    srv_sub:"From a quick copy to a big project — everything you need to print, at a fair price and on time.",
     s1t:"Document printing", s1d:"B/W and color, any quantity — from a single page to a full thesis.",
     s2t:"Business cards", s2d:"Laminated or not — a winning first impression.",
-    s3t:"Copying", s3d:"",
-    s4t:"Stickers", s4d:"",
+    s3t:"Copying",
+    s4t:"Stickers",
     s5t:"Wide-format", s5d:"Posters, banners and signs at any size.",
-    s6t:"Lamination", s6d:"",
+    s6t:"Lamination",
     s7t:"Posters & signs", s7d:"Sharp colors that catch the eye.",
     s8t:"Booklets & catalogs", s8d:"Booklets, catalogs and portfolios, professionally bound.",
-    s9t:"Binding & folders", s9d:"",
-    s10t:"Calendars", s10d:"",
-    srv_cta_t:"Didn't find what you need?", srv_cta_d:"Talk to us — we print almost anything.", srv_cta_b:"Chat on WhatsApp",
+    s9t:"Binding & folders",
+    s10t:"Calendars",
+    srv_cta_t:"Didn't find what you need?", srv_cta_b:"Chat on WhatsApp",
     wm:"COPY · PASTE ·", gl_label:"From our world", gl_title:"Color. Paper. Ink.",
-    gl_sub:"Hover over a photo — and watch our world turn to color.",
     g8:"Printing at work",
     c_fly:"Prints", c_box:"Packaging", c_st:"Stickers", c_env:"Envelopes",
     c_cal:"Calendars", c_menu:"Menus", c_mix:"Print products", c_br:"Booklets",
@@ -1468,15 +1438,15 @@ const I18N = {
     about_card_big:"Discounts", about_card_cap:"students & teachers",
     alt_about:"A graphic designer preparing a print file, with a tablet, sketches and a Pantone fan",
     about_p1:"Copy Paste is a copy & print center in Haifa — fast, accurate and convenient service for students, teachers, professionals and businesses. Digital equipment, fair prices and a personal touch.",
-    f1_t:"Digital equipment", f1_d:"Fast printers and copiers for perfect quality",
-    f2_t:"Friendly team", f2_d:"We help at every step — from file to finished product",
-    f3_t:"Special discount", f3_d:"For students and teachers — plus fair prices for all",
-    f4_t:"Fast, on the spot", f4_d:"Most jobs are ready on the spot or very quickly",
+    f1_t:"Digital equipment",
+    f2_t:"Friendly team",
+    f3_t:"Special discount",
+    f4_t:"Fast, on the spot",
     pr_label:"How it works", pr_title:"From file to print in four steps",
-    pr1_t:"Send your file", pr1_d:"Come in, or send it by WhatsApp / email",
-    pr2_t:"Choose & approve", pr2_d:"Paper, size and quantity — we'll help with design too",
-    pr3_t:"We print", pr3_d:"We print on fast digital gear at high quality",
-    pr4_t:"Ready!", pr4_d:"Pick it up — usually the same day",
+    pr1_t:"Send your file",
+    pr2_t:"Choose & approve",
+    pr3_t:"We print",
+    pr4_t:"Ready!",
     ts_label:"Reviews", ts_title:"Real customers, real words",
     ts:[
       {t:"Thank you for professional, patient and kind service and perfect design. We keep coming back!",n:"Ariella Hershkovitz",r:"Atnachta center",tone:"c"},
@@ -1495,7 +1465,6 @@ const I18N = {
     faq3_q:"Are there any discounts?", faq3_a:"Yes — a special discount for students and teachers with a valid ID.",
     faq4_q:"Do you help with design?", faq4_a:"Absolutely — our in-house designer will prep a print-ready file.",
     ct_label:"Contact", ct_t1:"Let's print", ct_t2:"something together",
-    ct_sub:"Message or call — we'll get back fast with a good price.",
     form_title:"Leave your details — we'll get back",
     form_name:"Name", form_phone:"Phone", form_product:"What to print?",
     form_other:"Other / not sure yet",
@@ -1511,20 +1480,18 @@ const I18N = {
   }
 };
 
-/* services: [key, accent, span class, featured?, photo, iconPath]
-   photos ONLY where they truthfully match the card's subject:
-   s5 invitations→wedding, s7 posters→backlit posters, s8 brochures→book fan */
+/* services: [key, accent, span class, featured?, iconPath] */
 const SERVICES = [
-  ["s1","var(--c)","span4",true,null,'<path d="M4 4h16v12H4z"/><path d="M4 20h10M4 16l5-5 4 4 3-3 4 4"/>'],
-  ["s2","var(--m)","span2",true,null,'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h6M7 14h4"/>'],
-  ["s3","var(--y-text)","",false,null,'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/>'],
-  ["s4","var(--c)","",false,null,'<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8l-8 8a8 8 0 0 1 0-16z" fill="currentColor" opacity=".2" stroke="none"/>'],
-  ["s6","var(--y-text)","",false,null,'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>'],
-  ["s5","var(--m)","",true,null,'<path d="M20 8v13H4V8"/><path d="M2 4h20v4H2z"/><path d="M12 8v13M9 4a3 3 0 0 1 3 3 3 3 0 0 1 3-3"/>'],
-  ["s7","var(--c)","",true,null,'<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/>'],
-  ["s8","var(--m)","",true,null,'<path d="M12 5c-2-1.5-4.5-2-8-2v16c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2V3c-3.5 0-6 .5-8 2z"/><path d="M12 5v16"/>'],
-  ["s9","var(--y-text)","span3",false,null,'<path d="M3 6a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'],
-  ["s10","var(--y-text)","span3",false,null,'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/>']
+  ["s1","var(--c)","span4",true,'<path d="M4 4h16v12H4z"/><path d="M4 20h10M4 16l5-5 4 4 3-3 4 4"/>'],
+  ["s2","var(--m)","span2",true,'<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10h6M7 14h4"/>'],
+  ["s3","var(--y-text)","",false,'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 7h6M9 11h6M9 15h3"/>'],
+  ["s4","var(--c)","",false,'<circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8l-8 8a8 8 0 0 1 0-16z" fill="currentColor" opacity=".2" stroke="none"/>'],
+  ["s6","var(--y-text)","",false,'<path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6"/>'],
+  ["s5","var(--m)","",true,'<path d="M20 8v13H4V8"/><path d="M2 4h20v4H2z"/><path d="M12 8v13M9 4a3 3 0 0 1 3 3 3 3 0 0 1 3-3"/>'],
+  ["s7","var(--c)","",true,'<rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M8 8h8M8 12h8M8 16h5"/>'],
+  ["s8","var(--m)","",true,'<path d="M12 5c-2-1.5-4.5-2-8-2v16c3.5 0 6 .5 8 2 2-1.5 4.5-2 8-2V3c-3.5 0-6 .5-8 2z"/><path d="M12 5v16"/>'],
+  ["s9","var(--y-text)","span3",false,'<path d="M3 6a2 2 0 0 1 2-2h4l2 3h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>'],
+  ["s10","var(--y-text)","span3",false,'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/>']
 ];
 /* gallery: 30 client photos, 15 per row. Order is hand-arranged so that
    no two same-type shots (flyer/box/sticker/envelope/menu/…) sit next to
@@ -1549,14 +1516,13 @@ const $$ = s => [...document.querySelectorAll(s)];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* build bento */
-$("#services-grid").innerHTML = SERVICES.map(([k,accent,span,feat,photo,icon],i)=>`
+$("#services-grid").innerHTML = SERVICES.map(([k,accent,span,feat,icon],i)=>`
   <div class="card reveal tilt ${span} ${feat?"featured":""}" style="--accent:${accent};--d:${(i%4)*.04}s">
     <span class="card-num" aria-hidden="true">${String(i+1).padStart(2,"0")}</span>
-    ${photo?`<div class="card-photo img-reveal"><img src="${photo}" alt="" loading="lazy" decoding="async"></div>`:""}
     <div class="card-icon"><svg width="${feat?28:24}" height="${feat?28:24}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icon}</svg></div>
     <h3 data-i18n="${k}t"></h3>
     ${feat?`<p data-i18n="${k}d"></p>`:""}
-    ${feat&&!photo?`<svg class="bg-ic" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">${icon}</svg>`:""}
+    ${feat?`<svg class="bg-ic" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">${icon}</svg>`:""}
   </div>`).join("") + `
   <div class="bento-cta reveal">
     <h3 data-i18n="srv_cta_t"></h3>
