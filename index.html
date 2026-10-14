@@ -202,7 +202,7 @@ html[data-theme="dark"]{
 }
 /* ============ BASE ============ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:84px;overflow-x:clip}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--nav-h) + 12px);overflow-x:clip}
 body{
   font-family:'Rubik',system-ui,sans-serif;
   font-size:1rem;line-height:1.6;
@@ -240,7 +240,10 @@ html[data-theme="dark"] #grain{mix-blend-mode:screen;opacity:.05}
   position:fixed;inset:0;z-index:var(--z-loader);background:var(--bg);
   display:grid;place-items:center;
   transition:opacity .5s var(--ease),visibility .5s;
+  /* страховка без JS: если скрипт упал до снятия заставки, она уходит сама */
+  animation:loaderOut .5s var(--ease) 4s forwards;
 }
+@keyframes loaderOut{to{opacity:0;visibility:hidden}}
 #loader.done{opacity:0;visibility:hidden}
 .loader-inner{display:grid;justify-items:center;gap:1.2rem}
 .loader-word{font-weight:900;font-size:1.6rem;letter-spacing:.02em}
@@ -947,6 +950,8 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
 </style>
 <link rel="stylesheet" href="lib/leaflet.css">
 <script src="lib/leaflet.js" defer></script>
+<!-- без JS: без заставки, все блоки видны сразу -->
+<noscript><style>#loader{display:none}.reveal{opacity:1;transform:none}.img-reveal::before{display:none}.img-reveal img{transform:none}</style></noscript>
 </head>
 <body>
 
@@ -1610,7 +1615,10 @@ const store = {
   set(k,v){ try { localStorage.setItem(k,v) } catch(e){} }
 };
 const LANGS = ["he","ru","en"];
-let lang = store.get("cp-lang") || "he";
+/* чужое значение в хранилище (старая версия сайта, ручная правка) не должно
+   ронять скрипт — иначе страница навсегда остаётся на заставке */
+let lang = store.get("cp-lang");
+if(!LANGS.includes(lang)) lang = "he";
 function applyLang(l){
   const d = I18N[l];
   document.documentElement.lang = d._lang;
@@ -1655,8 +1663,9 @@ $("#lang-toggle").addEventListener("click",()=>{
 });
 
 /* theme */
-let theme = store.get("cp-theme") ||
-  (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+let theme = store.get("cp-theme");
+if(theme!=="dark" && theme!=="light")
+  theme = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 function applyTheme(t){
   document.documentElement.dataset.theme = t;
   $("#theme-toggle").setAttribute("aria-pressed", t==="dark");
@@ -1685,7 +1694,7 @@ function onScroll(){
   velocity += scrollY - lastY;
   lastY = scrollY;
   if(ticking) return; ticking = true;
-  requestAnimationFrame(()=>{
+  requestAnimationFrame(()=>{ try {
     const y = scrollY, h = document.documentElement.scrollHeight - innerHeight;
     progress.style.width = (h>0 ? y/h*100 : 0) + "%";
     nav.classList.toggle("scrolled", y>40);
@@ -1712,8 +1721,8 @@ function onScroll(){
         aboutVisual.style.setProperty("--p", p.toFixed(3));
       }
     }
-    ticking = false;
-  });
+  /* сбой в одном кадре не должен навсегда заморозить шапку и прогресс */
+  } finally { ticking = false; } });
 }
 addEventListener("scroll", onScroll, {passive:true}); onScroll();
 /* фокус — в начало страницы: сама кнопка исчезает, и фокус иначе теряется */
@@ -1745,31 +1754,33 @@ if(!reduced){
   })();
 }
 
+/* fn(el) — один раз, когда элемент появился в кадре. Старый встроенный
+   браузер без IntersectionObserver: сразу (иначе блоки остались бы прозрачными) */
+function whenVisible(els, opts, fn){
+  if(!("IntersectionObserver" in window)){ els.forEach(fn); return; }
+  const o = new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){ o.unobserve(e.target); fn(e.target); }
+  }), opts);
+  els.forEach(el=>o.observe(el));
+}
+const reveal = el => el.classList.add("in");
 /* reveal on scroll */
-const io = new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-}),{threshold:.12,rootMargin:"0px 0px -40px 0px"});
-$$(".reveal").forEach(el=>io.observe(el));
-/* steps dashed line + standalone image reveals */
-const io2 = new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){ e.target.classList.add("in"); io2.unobserve(e.target); }
-}),{threshold:.3});
-["#steps"].forEach(s=>{ const el=$(s); if(el) io2.observe(el); });
+whenVisible($$(".reveal"), {threshold:.12,rootMargin:"0px 0px -40px 0px"}, reveal);
+/* steps dashed line */
+whenVisible([$("#steps")], {threshold:.3}, reveal);
 
-/* counters */
-const cio = new IntersectionObserver(es=>es.forEach(e=>{
-  if(!e.isIntersecting) return;
-  cio.unobserve(e.target);
-  const el = e.target, target = +el.dataset.target, t0 = performance.now(), dur = 2200;
+/* counters: в разметке — итоговые числа (их видят без JS); с нуля — только анимация */
+const counters = $$(".counter");
+if(!reduced) counters.forEach(el=>{ el.textContent = "0"; });
+whenVisible(counters, {threshold:.6}, el=>{
+  const target = +el.dataset.target, t0 = performance.now(), dur = 2200;
   if(reduced){ el.textContent = target.toLocaleString(); return; }
   (function tick(t){
     const p = Math.min((t-t0)/dur, 1), ease = 1-Math.pow(1-p,4);
     el.textContent = Math.round(target*ease).toLocaleString();
     if(p<1) requestAnimationFrame(tick);
   })(t0);
-}),{threshold:.6});
-/* в разметке — итоговые числа (их видят без JS); с нуля считаем только тут */
-$$(".counter").forEach(el=>{ if(!reduced) el.textContent = "0"; cio.observe(el); });
+});
 
 /* ink-drop ripple on buttons (press feedback ≤100ms) */
 if(!reduced) document.addEventListener("pointerdown",e=>{
@@ -1807,7 +1818,8 @@ addEventListener("resize",()=>{
 /* lead form → prefilled WhatsApp */
 const form = $("#lead-form"), fName = $("#f-name"), fPhone = $("#f-phone");
 const inName = $("#in-name"), inPhone = $("#in-phone");
-const phoneOk = v => /^[+\d][\d\s-]{7,15}$/.test(v.trim());
+/* скобки и точки допустимы — сам сайт пишет номер как (052) 756-90-70 */
+const phoneOk = v => /^[+\d][\d\s-]{7,15}$/.test(v.replace(/[().]/g,"").trim());
 /* ошибка связана с полем: скринридер читает причину вместе с полем */
 function setInvalid(field, input, bad){
   field.classList.toggle("invalid", bad);
@@ -1836,9 +1848,17 @@ form.addEventListener("submit",e=>{
   if(!okP){ inPhone.focus(); return; }
   const d = I18N[lang];
   const msg = d.wa_msg(inName.value.trim(), inPhone.value.trim(), $("#in-product").value);
-  window.open("https://wa.me/972527569070?text="+encodeURIComponent(msg),"_blank","noopener");
-  const ok = $("#form-ok");
+  const url = "https://wa.me/972527569070?text="+encodeURIComponent(msg);
+  /* "noopener" makes window.open return null even on success, so open normally and
+     cut the opener by hand; null = popup blocked (in-app browsers) → same tab */
+  const w = window.open(url, "_blank");
+  if(w) w.opener = null;
+  else { location.href = url; return; }
+  /* текст вставляется после показа — так живой регион его точно озвучит */
+  const ok = $("#form-ok"), okText = ok.querySelector("[data-i18n]");
+  okText.textContent = "";
   ok.classList.add("show");
+  setTimeout(()=>{ okText.textContent = d.form_ok; }, 60);
   setTimeout(()=>ok.classList.remove("show"), 5000);
 });
 
@@ -1874,11 +1894,6 @@ if(matchMedia("(pointer:fine)").matches && !reduced){
     hero.addEventListener("mouseleave",()=>cards.forEach(c=>c.style.transform=""));
   }
 }
-/* gallery image reveals fire independently */
-const gio = new IntersectionObserver(es=>es.forEach(e=>{
-  if(e.isIntersecting){ e.target.classList.add("in"); gio.unobserve(e.target); }
-}),{threshold:.2});
-$$("#gallery .img-reveal, .card .img-reveal").forEach(el=>gio.observe(el));
 /* ===== интерактивная карта (Leaflet, библиотека лежит в lib/) ===== */
 document.addEventListener("DOMContentLoaded",()=>{
   const el = document.getElementById("map");
