@@ -1048,9 +1048,9 @@ footer.site .cmyk-line i:nth-child(4){background:var(--ink)}
       </div>
     </div>
     <div class="hero-collage" id="hero-collage" aria-hidden="true">
-      <div class="pcard pcard-1"><div class="pcard-inner"><img src="img/hero-binding.jpg" alt="" width="300" height="215" decoding="async"></div></div>
-      <div class="pcard pcard-2"><div class="pcard-inner"><img src="img/hero-lamination.jpg" alt="" width="300" height="215" decoding="async"></div></div>
-      <div class="pcard pcard-3"><div class="pcard-inner"><img src="img/hero-print.jpg" alt="" width="300" height="215" decoding="async"></div></div>
+      <div class="pcard pcard-1"><div class="pcard-inner"><img src="img/hero-binding.jpg" alt="" width="300" height="215" loading="lazy" decoding="async"></div></div>
+      <div class="pcard pcard-2"><div class="pcard-inner"><img src="img/hero-lamination.jpg" alt="" width="300" height="215" loading="lazy" decoding="async"></div></div>
+      <div class="pcard pcard-3"><div class="pcard-inner"><img src="img/hero-print.jpg" alt="" width="300" height="215" loading="lazy" decoding="async"></div></div>
     </div>
   </div>
 </section>
@@ -1577,11 +1577,12 @@ function fillLoop(track, setHTML){
   [...track.children].slice(n).forEach(el=>{ el.classList.add("dup"); el.setAttribute("aria-hidden","true"); });
 }
 /* gallery rows (no loading="lazy" here: transform-based marquee keeps layout
-   position off-screen and lazy never fires) */
+   position off-screen and lazy never fires — src is set when the gallery
+   comes near, see below) */
 function fillGalleryRow(track, items){
   fillLoop(track, items.map(([src,cap])=>`
     <figure class="g-item">
-      <img src="${src}" alt="" decoding="async" width="300" height="210">
+      <img data-src="${src}" alt="" decoding="async" width="300" height="210">
       <figcaption data-i18n="${cap}"></figcaption>
     </figure>`).join(""));
 }
@@ -1728,27 +1729,49 @@ topBtn.addEventListener("click",()=>{
   scrollTo({top:0,behavior:reduced?"auto":"smooth"});
 });
 
-/* gallery rows: rAF marquee, speed reacts to scroll velocity */
+/* gallery photos (~460 KB): load when the gallery comes near, not with the page */
+whenVisible([gallerySec], {rootMargin:"600px 0px"}, ()=>{
+  $$("#gallery img[data-src]").forEach(img=>{ img.src = img.dataset.src; img.removeAttribute("data-src"); });
+});
+
+/* gallery rows: rAF marquee, speed reacts to scroll velocity.
+   Runs only while the gallery is on screen — otherwise it would wake the CPU
+   (and drain the battery) every frame for nothing */
 if(!reduced){
   const rows = [
-    {el:$("#g-row-1"), x:0, dir:-1},
-    {el:$("#g-row-2"), x:0, dir:1}
+    {el:$("#g-row-1"), x:0, dir:-1, half:0},
+    {el:$("#g-row-2"), x:0, dir:1, half:0}
   ];
-  (function gLoop(){
+  /* half = one copy's width; changes only with the viewport (item size breakpoint) */
+  const measure = () => rows.forEach(r=>{ r.half = r.el.scrollWidth/2; });
+  measure();
+  addEventListener("resize", measure, {passive:true});
+  let running = false;
+  function gLoop(){
+    if(!running) return;
     velocity *= .92;
     const boost = Math.min(Math.abs(velocity)*.05, 3);
     rows.forEach(r=>{
-      if(!r.el) return;
-      const half = r.el.scrollWidth/2;
-      if(half>0){
+      if(r.half>0){
         r.x += r.dir * (.4 + boost);
-        if(r.x <= -half) r.x += half;
-        if(r.x > 0) r.x -= half;
+        if(r.x <= -r.half) r.x += r.half;
+        if(r.x > 0) r.x -= r.half;
         r.el.style.transform = `translateX(${r.x}px)`;
       }
     });
     requestAnimationFrame(gLoop);
-  })();
+  }
+  const start = () => {
+    if(running) return;
+    running = true;
+    velocity = Math.max(-60, Math.min(60, velocity)); /* scroll piled up while stopped */
+    requestAnimationFrame(gLoop);
+  };
+  if("IntersectionObserver" in window)
+    new IntersectionObserver(es=>{
+      if(es[es.length-1].isIntersecting) start(); else running = false;
+    }).observe(gallerySec);
+  else start();
 }
 
 /* fn(el) — один раз, когда элемент появился в кадре. Старый встроенный
