@@ -947,6 +947,7 @@ html:not(.fx) .img-reveal img{transform:none}
 </style>
 <!-- без JS: без заставки, все блоки видны сразу -->
 <noscript><style>#loader{display:none}</style></noscript>
+<style id="online-order-link">#services-grid .card.has-go{cursor:pointer}#services-grid .card-go{display:inline-flex;align-items:center;gap:.35rem;justify-self:start;margin-top:.35rem;font-weight:700;font-size:.9rem;color:var(--ink);text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent,var(--m))}#services-grid .card-go::after{content:"";position:absolute;inset:0;z-index:4}#services-grid .card-go i{font-style:normal;color:var(--accent,var(--m));transition:transform .2s}html[dir=rtl] #services-grid .card-go i{transform:scaleX(-1)}@media (hover:hover){#services-grid .card.has-go:hover .card-go i{transform:translateX(4px)}html[dir=rtl] #services-grid .card.has-go:hover .card-go i{transform:scaleX(-1) translateX(4px)}}#services-grid .card-go:focus-visible{outline:none}#services-grid .card.has-go:focus-within{outline:3px solid var(--m);outline-offset:3px}</style>
 </head>
 <body>
 
@@ -1936,5 +1937,6 @@ function loadMap(){
 whenVisible([mapEl], {rootMargin:"300px"}, loadMap);
 
 </script>
+<script id="online-order-link">(function(){var t=document.querySelector('#services-grid [data-i18n="s1t"]');if(!t)return;var card=t.closest('.card');if(!card)return;var T={"he":"להזמנה אונליין","ru":"Заказать онлайн","en":"Order online"};t.id='srv-print-t';var a=document.createElement('a');a.className='card-go';a.href="print-order.html";a.setAttribute('aria-labelledby','srv-print-t srv-print-go');var s=document.createElement('span');s.id='srv-print-go';var i=document.createElement('i');i.setAttribute('aria-hidden','true');i.textContent='\u2192';a.appendChild(s);a.appendChild(i);card.appendChild(a);card.classList.add('has-go');var h=document.documentElement;function set(){s.textContent=T[h.lang]||T.he}set();new MutationObserver(set).observe(h,{attributes:true,attributeFilter:['lang']});})();</script>
 </body>
 </html>
